@@ -140,3 +140,108 @@ Strong law of Large Numbers:
 实的Borel可测的函数列$f_1,f_2,f_3\dots$ defined on$\mathbb{R}$, $f$ 也是实的Borel可测函数，the sequence converges to f almost every-where if 序列极限不为f的点的集合的 Lebesgue measure为零
 
 $lim_{n\to \infty}f_n=f \textit{      almost everywhere}$
+
+当随机变量几乎趋于一致，他们的期望值趋于极限的期望。类似地，当函数几乎处处converge，通常情况下，他们的lebesgue积分收敛到极限的积分。特殊的情况，就是
+
+$lim_{n\to \infty}\int f_n(x)dx\ne \int lim_{n\to \infty} f_n(x)dx$
+
+例如f是正态分布，左边为1，右边lebesgue积分为0
+
+**theorem** *Monotone convergence* $X_1,X_2,X_3\dots$ be a sequence of random variables converging almost surely to another random variable $X$ if 序列几乎单调不减，期望的极限是EX
+
+$lim_{n \to \infty}\mathbb{E}X_n=\mathbb{E} X$
+
+把这里的随机变量换成Borel可测实值函数，也是成立的
+
+$lim_{n\to \infty}\int_{-\infty}^{\infty}f_n(x)dx=\int_{-\infty}^{\infty}f(x)dx$
+
+即使随机变量几乎不发散，但期望可能发散
+
+**theorem Dominated convergence** 如果随机变量序列几乎趋于一致于$X$,且满足 $|X_n|\le Y$ almost surely for every n, $\mathbb{E}Y<\infty$, then $lim_{n\to \infty}EX_n=EX$
+
+对于Borel可测实值函数也一样成立：若$f_n(x)\le g$ almost surely for every n, and $\int_{-\infty}^\infty g(x)dx<\infty$
+
+若$f_n(x)\le g$ almost surely for every n, and $\int_{-\infty}^\infty g(x)dx<\infty$
+
+$lim_{n\to \infty}\int_{-\infty}^\infty f_n(x)dx=\int_{-\infty}^\infty f(x)dx$
+
+## Computation of Expectations
+
+**theorem** $g$ is a Borel measurable function on $\mathbb{R}$ Then:
+
+$\mathbb{E} |g(X)|=\int_\mathbb{R} |g(x)|d\mu_X(x)$ , if this quantity is finite, then$\mathbb{E} g(X)=\int_\mathbb{R} g(x)d\mu_X(x)$
+
+PROOF
+
+1. $\mathbb{EI}_B(X)=\mathbb{P}\{X\in B\}=\mu_X(B)=\int_\mathbb{R}\mathbb{I}_B(x)d\mu_X(x)$
+2. nonnegative simple functions. A simple function is a finite sum of indicator functions times constants  
+    
+    $$g(x)=\sum\alpha_k \mathbb{I}_{B_k}(x)$$
+    
+    so 
+    
+    $$\mathbb{E}g(X)=\mathbb{E}\sum \alpha_k \mathbb{I}\_{B\_k}(X)=\sum \alpha_k\int_R\mathbb{I}\_{B\_k}d\mu_X(x)=\int_R(\sum \alpha_k\mathbb{I}\_{B\_k}(x))d\mu_X(x)=\int_R g(x)d\mu_X(x)$$
+    
+3. when g is nonnegative Borel-measurable functions. 
+    
+    $$B_{k,n}=\{x;\frac{k}{2^n}\le g(x)\le \frac{k+1}{2^n}\},k=0,1,2,\dots,4^n-1$$
+    
+    $$g_n(x)=\sum \frac{k}{2^n}\mathbb{I}\_{B\_{k,n}}(x)$$
+    
+    $$\mathbb{E}g(X)=\lim \mathbb{E}g_n(X)=\lim \int_R g_n(x)d\mu_X(x)=\int_R g(x)d\mu_X(x)$$
+    
+4. when g is general Borel-measurable function.
+    
+    $g^+(x)=\max\{g(x),0\},g^-(x)\min\{-g(x),0\}$
+    
+
+**Theorem** $X$ is a random variable on a probability space $(\Omega,\mathcal{F},\mathbb{P})$, and let g be a Borel measurable function on $\mathbb{R}$. $X$ has a density $f$ 
+
+$\mathbb{E}|g(X)|=\int|g(x)|f(x)dx$
+
+if quantity is finite, then 
+
+$\mathbb{E}g(X)=\int g(x)f(x)dx$
+
+PROOF
+
+simple functions
+
+$$\mathbb{E}g(X)=\mathbb{E}(\sum \alpha_k \mathbb{I}\_{B\_k}(X))=\sum \alpha_k \mathbb{E}\mathbb{I}\_{B_k}(X)=\sum \alpha_k \int \mathbb{I}\_{B\_k}f(x)dx\\\\=\int \sum \alpha
+\_k\mathbb{I}\_{B\_k}(x)f(x)dx=\int g(x)f(x)dx$$
+
+nonnegative Borel measurable functions
+
+$$\mathbb{E}g_n(X)=\int g_n(x)f(x)dx$$
+
+## Change of Measure
+
+We can use a positive random variable $Z$ to change probability measures on a space $\Omega$. We need to do this when we change from the actual probability measure $\mathbb{P}$ to the risk-neutral probability measure $\widetilde{\mathbb{P}}$ in models of financial markets.
+
+$$Z(\omega)\mathbb{P}(\omega)=\widetilde{\mathbb{P}}(\omega)$$
+
+to change from $\mathbb{P}$ to $\widetilde{\mathbb{P}}$, we need to reassign probabilities in $\Omega$ using $Z$ to tell us where in $\Omega$ we should revise the probability upward and where downward. 
+
+*we should do this set-by-set, but not $\omega$-by-$\omega$. According to following theorem*
+
+**Theorem** let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space and let $Z$ be an almost surely nonnegative random variable with $\mathbb{E}Z=1$. for $A\in\mathcal{F}$, define $\widetilde{\mathbb{P}}(A)=\int_AZ(\omega)d\mathbb{P}(\omega)$. Then $\widetilde{\mathbb{P}}$ is a probability measure. If $X$ is a nonnegative random variable, then$\widetilde{\mathbb{E}}X=\mathbb{E}[XZ]$. If $Z$ is almost surely strictly positive, we also have $\mathbb{E}Y=\widetilde{\mathbb{E}}[\frac{Y}{Z}]$ for every nonnegative random variable $Y$.
+
+PROOF
+
+$\widetilde{\mathbb{P}}(\Omega)=1$, and countably additive. 
+
+countably additive
+
+let $A_1,A_2,A_3,\dots$ be a sequence of disjoint sets in $\mathcal{F}$, and define $B_n=\cup_{k=1}^n A_k$
+
+we can use the monotone convergence theorem, to write
+
+$$\widetilde{\mathbb{P}}(\cup \_{k=1}^\infty A\_k)=\widetilde{\mathbb{P}}(B\_\infty)=\int\_\Omega \mathbb{I}\_{B\_\infty}(\omega)Z(\omega)d\mathbb{P}(\omega)\\\\=\lim\_{n\to \infty}\int\_\Omega \mathbb{I}\_{B\_n}(\omega)Z(\omega)d\mathbb{P}(\omega)\\\\=\lim\_{n\to \infty}\sum\int\_\Omega\mathbb{I}\_{A\_k}(\omega)Z(\omega)d\mathbb{P}(\omega)=\sum\_{k=1}^\infty\widetilde{\mathbb{P}}(A\_k)$$
+
+**Definition** 如果两个概率测度下sigma代数中零概率的集合相同，那么称两个概率测度为equivalent
+
+在金融中，实际概率测度和风险中性概率测度就是equivalent的，在risk neutral world中almost work的hedge在actual world中一定也almost surely work
+
+**Definition** 对于equivalent的两个概率测度以及它们之间的almost surely positive random variable, 这个随机变量$Z$称之为Radon-Nikodym derivative of$\widetilde{\mathbb{P}}$ with respect to $\mathbb{P}$ and we write $Z=\frac{d\widetilde{\mathbb{P}}}{d\mathbb{P}}$, $Z$ 的存在性成为Radon-Nikodym Theorem
+
+# Information and Conditioning

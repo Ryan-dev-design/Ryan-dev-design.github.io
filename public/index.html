@@ -157,7 +157,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/22/Stochastic%20Calculus/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/30/Stochastic%20Calculus/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -171,7 +171,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/22/Stochastic%20Calculus/" class="post-title-link" itemprop="url">Stochastic Calculus for Finance</a>
+            <a href="/2022/01/30/Stochastic%20Calculus/" class="post-title-link" itemprop="url">Stochastic Calculus for Finance</a>
         </h2>
 
         <div class="post-meta">
@@ -182,7 +182,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-01-22 15:46:20 / 修改时间：16:31:01" itemprop="dateCreated datePublished" datetime="2022-01-22T15:46:20+08:00">2022-01-22</time>
+              <time title="创建时间：2022-01-30 16:54:21 / 修改时间：17:38:28" itemprop="dateCreated datePublished" datetime="2022-01-30T16:54:21+08:00">2022-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,56 +231,114 @@
 </ol>
 <h3 id="概率测量的定义-probability-measure"><a href="#概率测量的定义-probability-measure" class="headerlink" title="概率测量的定义 probability measure"></a>概率测量的定义 probability measure</h3><p>一个函数，定义域是F中的任意集合，值域是[0,1]，满足：</p>
 <ol>
-<li>$P(\Omega)=1$</li>
-<li>$P(\cup^\infty_{n=1} A_n)=\sum^\infty_{n=1} P(A_n)$ $triple(\Omega,F,P)$称为概率空间</li>
+<li><p>$P(\Omega)&#x3D;1$</p>
+</li>
+<li><p>$P(\cup^\infty_{n&#x3D;1} A_n)&#x3D;\sum^\infty_{n&#x3D;1} P(A_n)$</p>
+<p> $triple(\Omega,F,P)$称为概率空间</p>
+</li>
 </ol>
 <p>uniform（Lebesgue）measure on [0,1]：在0，1之间选取一个数，定义：</p>
-<p>$P(a,b)=P[a,b]=b-a,0\le a \le b\le 1$</p>
+<p>$P(a,b)&#x3D;P[a,b]&#x3D;b-a,0\le a \le b\le 1$</p>
 <p>可以用上述方式表述概率的集合的集合构成了sigma代数，从包含的所有闭区间出发，称为Borel sigma代数</p>
-<p>$(a,b)=\cup_{n=1}^\infty[a+\frac{1}{n},b-\frac{1}{n}]$ ，所以sigma代数中包含了所有开区间，分别取补集可以导出包含开区间与闭区间的并，从而导出所有集合  </p>
+<p>$(a,b)&#x3D;\cup_{n&#x3D;1}^\infty[a+\frac{1}{n},b-\frac{1}{n}]$ ，所以sigma代数中包含了所有开区间，分别取补集可以导出包含开区间与闭区间的并，从而导出所有集合  </p>
 <p>通过从闭区间出发，添加所有必要元素构成的sigma代数称之为$Borel \quad\sigma-algebra$ of subsets of [0,1] and is denoted B[0,1]</p>
-<p>event A occurs almost surely if P(A)=1</p>
+<p>event A occurs almost surely if P(A)&#x3D;1</p>
 <h2 id="Random-variables-and-distributions"><a href="#Random-variables-and-distributions" class="headerlink" title="Random variables and distributions"></a>Random variables and distributions</h2><p>definition: a random variable is a real-valued function X defined on $\Omega$  with the property that  for every Borel subset B of <strong>R,</strong> the subset of $\Omega$  given by:</p>
-<p>$$<br>\begin{equation*}{x\in B}={\omega \in \Omega ; X(\omega )\in B}\end{equation*}<br>$$</p>
+<p>$$<br>\begin{equation*}{x\in B}&#x3D;{\omega \in \Omega ; X(\omega )\in B}\end{equation*}<br>$$</p>
 <p>is in the $\sigma$-algebra F</p>
 <p>本质是把事件映射为实数，同时为了保证可以拟映射，要求函数可测。</p>
 <p>构造R的Borel子集？从所有的闭区间出发，闭区间的交——特别地，开区间也包含进来，从而开集包含进来 ，因为每个开集可以写成开区间序列的并。闭集也是Borel集合，因为是开集的补集。</p>
 <p>关注X取值包含于某集合而不是具体的值</p>
-<p>Definition: let X be a random variable on a probability space, the distribution measure of X is the probability measure $\mu _X$that assigns to each Borel subset B of R the mass $\mu _X(B)=P{X\in B}$ </p>
+<p>Definition: let X be a random variable on a probability space, the distribution measure of X is the probability measure $\mu _X$that assigns to each Borel subset B of R the mass $\mu _X(B)&#x3D;P{X\in B}$ </p>
 <p>Random variable 有distribution 但两者不等同，两个不同的Random variable 可以有相同的distribution，一个单独的random variable 可以有两个不同的distribution</p>
-<p>cdf：$F(x)=P{X\le x}$</p>
-<p>$\mu_X(x,y]=F(y)-F(x)$</p>
-<h2 id="Expectations"><a href="#Expectations" class="headerlink" title="Expectations"></a>Expectations</h2><p>$E(X)=\sum X(\omega )P(\omega )$</p>
+<p>cdf：$F(x)&#x3D;P{X\le x}$</p>
+<p>$\mu_X(x,y]&#x3D;F(y)-F(x)$</p>
+<h2 id="Expectations"><a href="#Expectations" class="headerlink" title="Expectations"></a>Expectations</h2><p>$E(X)&#x3D;\sum X(\omega )P(\omega )$</p>
 <p>${\Omega , F, P}$ random variable $X(\omega )$ P是概率空间中的测度</p>
-<p>$A_k={\omega \in \Omega ; y_k\le X(\omega ) &lt; y_{k+1}}$</p>
-<p>lower Lebesgue sum $LS^-_{\Pi}=\sum y_k P(A_k)$</p>
+<p>$A_k&#x3D;{\omega \in \Omega ; y_k\le X(\omega ) &lt; y_{k+1}}$</p>
+<p>lower Lebesgue sum $LS^-_{\Pi}&#x3D;\sum y_k P(A_k)$</p>
 <p>the maximal distance between the $y_k$ partition points approaches zero, we get Lebesgue integral$\int_{\Omega}X(\omega )dP(\omega)$</p>
 <p>Lebesgue integral相当于把积分概念拓展到可测空间，而不是单纯的更换了求和方式。横坐标实际上是$\Omega$的测度。</p>
 <p>if the random variables X can take both positive and negative values, we can define the positive and negative parts of X:</p>
-<p>$X^+=max{X,0}$, $X^-=min{-X,0}$</p>
-<p>$\int XdP=\int X^+dP-\int X^- dP$</p>
+<p>$X^+&#x3D;max{X,0}$, $X^-&#x3D;min{-X,0}$</p>
+<p>$\int XdP&#x3D;\int X^+dP-\int X^- dP$</p>
 <p><strong>Comparison</strong></p>
 <p>If $X\le Y$ almost surely, and if the Lebesgue integral are defined, then</p>
 <p>$\int _{\Omega}X(\omega)dP(\omega)\le \int _{\Omega}Y(\omega)dP(\omega)$</p>
-<p>If $X=Y$ almost surely, and if the Lebesgue integral are defined, then</p>
-<p>$\int _{\Omega}X(\omega)dP(\omega)=\int _{\Omega}Y(\omega)dP(\omega)$</p>
+<p>If $X&#x3D;Y$ almost surely, and if the Lebesgue integral are defined, then</p>
+<p>$\int _{\Omega}X(\omega)dP(\omega)&#x3D;\int _{\Omega}Y(\omega)dP(\omega)$</p>
 <p><strong>Integrability, Linearity …</strong></p>
 <p><strong>Jensen’s inequality</strong></p>
 <p>if $\phi$ is a convex, real-valued function defined on R and if $E|X|&lt;\infty$ ,then</p>
 <p>$\phi(EX)\le E\phi(X)$</p>
 <p>$\mathcal{B} (\mathbb{R})$ be the sigma-algebra of Borel subsets of $\mathbb{R}$, the Lebesgue measure $\mathcal{L}$ on R assigns to each set $B\in \mathcal{B}(\mathbb{R})$ a number in $[0,\infty)$ or the value $\infty$ so that:</p>
 <ol>
-<li>$\mathcal{L}[a,b] =b-a$ </li>
-<li>if $B_1,B_2,B_3 \dots$  is a sequence of disjoint sets in $\mathcal{B}$ ,then we have the countable additivity property: $\mathcal{L} (\cup_{n=1}^\infty B_n)=\sum_{n=1}^\infty \mathcal{L} (B_n)$</li>
+<li>$\mathcal{L}[a,b] &#x3D;b-a$ </li>
+<li>if $B_1,B_2,B_3 \dots$  is a sequence of disjoint sets in $\mathcal{B}$ ,then we have the countable additivity property: $\mathcal{L} (\cup_{n&#x3D;1}^\infty B_n)&#x3D;\sum_{n&#x3D;1}^\infty \mathcal{L} (B_n)$</li>
 </ol>
 <p>黎曼积分有且只有在区间中非连续点的集合的Lebesgue测度为零时有定义，即f在区间上几乎处处连续</p>
 <p>若f的Riemann积分在区间上存在，则f是Borel可测的，而且Riemann积分和Lebesgue积分一致。</p>
 <h3 id="convergence-of-integrals"><a href="#convergence-of-integrals" class="headerlink" title="convergence of integrals"></a>convergence of integrals</h3><p><strong>definition</strong></p>
-<p>$X_1,X_2,X_3\dots$ be a sequence of random variables on the same probability space$(\Omega, \mathcal{F},\mathbb{P})$, $X$ be another random variable. $X_1,X_2,X_3\dots$  converges to $X$ almost surely $lim_{n\to \infty}X_n=X$  almost surely. if the set of $\omega \in \Omega$ for the sequence has limit $X(\omega)$ is a set with probability one. </p>
+<p>$X_1,X_2,X_3\dots$ be a sequence of random variables on the same probability space$(\Omega, \mathcal{F},\mathbb{P})$, $X$ be another random variable. $X_1,X_2,X_3\dots$  converges to $X$ almost surely $lim_{n\to \infty}X_n&#x3D;X$  almost surely. if the set of $\omega \in \Omega$ for the sequence has limit $X(\omega)$ is a set with probability one. </p>
 <p>Strong law of Large Numbers: </p>
 <p>实的Borel可测的函数列$f_1,f_2,f_3\dots$ defined on$\mathbb{R}$, $f$ 也是实的Borel可测函数，the sequence converges to f almost every-where if 序列极限不为f的点的集合的 Lebesgue measure为零</p>
-<p>$lim_{n\to \infty}f_n=f \textit{      almost everywhere}$</p>
-
+<p>$lim_{n\to \infty}f_n&#x3D;f \textit{      almost everywhere}$</p>
+<p>当随机变量几乎趋于一致，他们的期望值趋于极限的期望。类似地，当函数几乎处处converge，通常情况下，他们的lebesgue积分收敛到极限的积分。特殊的情况，就是</p>
+<p>$lim_{n\to \infty}\int f_n(x)dx\ne \int lim_{n\to \infty} f_n(x)dx$</p>
+<p>例如f是正态分布，左边为1，右边lebesgue积分为0</p>
+<p><strong>theorem</strong> <em>Monotone convergence</em> $X_1,X_2,X_3\dots$ be a sequence of random variables converging almost surely to another random variable $X$ if 序列几乎单调不减，期望的极限是EX</p>
+<p>$lim_{n \to \infty}\mathbb{E}X_n&#x3D;\mathbb{E} X$</p>
+<p>把这里的随机变量换成Borel可测实值函数，也是成立的</p>
+<p>$lim_{n\to \infty}\int_{-\infty}^{\infty}f_n(x)dx&#x3D;\int_{-\infty}^{\infty}f(x)dx$</p>
+<p>即使随机变量几乎不发散，但期望可能发散</p>
+<p><strong>theorem Dominated convergence</strong> 如果随机变量序列几乎趋于一致于$X$,且满足 $|X_n|\le Y$ almost surely for every n, $\mathbb{E}Y&lt;\infty$, then $lim_{n\to \infty}EX_n&#x3D;EX$</p>
+<p>对于Borel可测实值函数也一样成立：若$f_n(x)\le g$ almost surely for every n, and $\int_{-\infty}^\infty g(x)dx&lt;\infty$</p>
+<p>若$f_n(x)\le g$ almost surely for every n, and $\int_{-\infty}^\infty g(x)dx&lt;\infty$</p>
+<p>$lim_{n\to \infty}\int_{-\infty}^\infty f_n(x)dx&#x3D;\int_{-\infty}^\infty f(x)dx$</p>
+<h2 id="Computation-of-Expectations"><a href="#Computation-of-Expectations" class="headerlink" title="Computation of Expectations"></a>Computation of Expectations</h2><p><strong>theorem</strong> $g$ is a Borel measurable function on $\mathbb{R}$ Then:</p>
+<p>$\mathbb{E} |g(X)|&#x3D;\int_\mathbb{R} |g(x)|d\mu_X(x)$ , if this quantity is finite, then$\mathbb{E} g(X)&#x3D;\int_\mathbb{R} g(x)d\mu_X(x)$</p>
+<p>PROOF</p>
+<ol>
+<li><p>$\mathbb{EI}_B(X)&#x3D;\mathbb{P}{X\in B}&#x3D;\mu_X(B)&#x3D;\int_\mathbb{R}\mathbb{I}_B(x)d\mu_X(x)$</p>
+</li>
+<li><p>nonnegative simple functions. A simple function is a finite sum of indicator functions times constants  </p>
+<p> $$g(x)&#x3D;\sum\alpha_k \mathbb{I}_{B_k}(x)$$</p>
+<p> so </p>
+<p> $$\mathbb{E}g(X)&#x3D;\mathbb{E}\sum \alpha_k \mathbb{I}_{B_k}(X)&#x3D;\sum \alpha_k\int_R\mathbb{I}_{B_k}d\mu_X(x)&#x3D;\int_R(\sum \alpha_k\mathbb{I}_{B_k}(x))d\mu_X(x)&#x3D;\int_R g(x)d\mu_X(x)$$</p>
+</li>
+<li><p>when g is nonnegative Borel-measurable functions. </p>
+<p> $$B_{k,n}&#x3D;{x;\frac{k}{2^n}\le g(x)\le \frac{k+1}{2^n}},k&#x3D;0,1,2,\dots,4^n-1$$</p>
+<p> $$g_n(x)&#x3D;\sum \frac{k}{2^n}\mathbb{I}_{B_{k,n}}(x)$$</p>
+<p> $$\mathbb{E}g(X)&#x3D;\lim \mathbb{E}g_n(X)&#x3D;\lim \int_R g_n(x)d\mu_X(x)&#x3D;\int_R g(x)d\mu_X(x)$$</p>
+</li>
+<li><p>when g is general Borel-measurable function.</p>
+<p> $g^+(x)&#x3D;\max{g(x),0},g^-(x)\min{-g(x),0}$</p>
+</li>
+</ol>
+<p><strong>Theorem</strong> $X$ is a random variable on a probability space $(\Omega,\mathcal{F},\mathbb{P})$, and let g be a Borel measurable function on $\mathbb{R}$. $X$ has a density $f$ </p>
+<p>$\mathbb{E}|g(X)|&#x3D;\int|g(x)|f(x)dx$</p>
+<p>if quantity is finite, then </p>
+<p>$\mathbb{E}g(X)&#x3D;\int g(x)f(x)dx$</p>
+<p>PROOF</p>
+<p>simple functions</p>
+<p>$$\mathbb{E}g(X)&#x3D;\mathbb{E}(\sum \alpha_k \mathbb{I}_{B_k}(X))&#x3D;\sum \alpha_k \mathbb{E}\mathbb{I}_{B_k}(X)&#x3D;\sum \alpha_k \int \mathbb{I}_{B_k}f(x)dx\\&#x3D;\int \sum \alpha<br>_k\mathbb{I}_{B_k}(x)f(x)dx&#x3D;\int g(x)f(x)dx$$</p>
+<p>nonnegative Borel measurable functions</p>
+<p>$$\mathbb{E}g_n(X)&#x3D;\int g_n(x)f(x)dx$$</p>
+<h2 id="Change-of-Measure"><a href="#Change-of-Measure" class="headerlink" title="Change of Measure"></a>Change of Measure</h2><p>We can use a positive random variable $Z$ to change probability measures on a space $\Omega$. We need to do this when we change from the actual probability measure $\mathbb{P}$ to the risk-neutral probability measure $\widetilde{\mathbb{P}}$ in models of financial markets.</p>
+<p>$$Z(\omega)\mathbb{P}(\omega)&#x3D;\widetilde{\mathbb{P}}(\omega)$$</p>
+<p>to change from $\mathbb{P}$ to $\widetilde{\mathbb{P}}$, we need to reassign probabilities in $\Omega$ using $Z$ to tell us where in $\Omega$ we should revise the probability upward and where downward. </p>
+<p><em>we should do this set-by-set, but not $\omega$-by-$\omega$. According to following theorem</em></p>
+<p><strong>Theorem</strong> let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space and let $Z$ be an almost surely nonnegative random variable with $\mathbb{E}Z&#x3D;1$. for $A\in\mathcal{F}$, define $\widetilde{\mathbb{P}}(A)&#x3D;\int_AZ(\omega)d\mathbb{P}(\omega)$. Then $\widetilde{\mathbb{P}}$ is a probability measure. If $X$ is a nonnegative random variable, then$\widetilde{\mathbb{E}}X&#x3D;\mathbb{E}[XZ]$. If $Z$ is almost surely strictly positive, we also have $\mathbb{E}Y&#x3D;\widetilde{\mathbb{E}}[\frac{Y}{Z}]$ for every nonnegative random variable $Y$.</p>
+<p>PROOF</p>
+<p>$\widetilde{\mathbb{P}}(\Omega)&#x3D;1$, and countably additive. </p>
+<p>countably additive</p>
+<p>let $A_1,A_2,A_3,\dots$ be a sequence of disjoint sets in $\mathcal{F}$, and define $B_n&#x3D;\cup_{k&#x3D;1}^n A_k$</p>
+<p>we can use the monotone convergence theorem, to write</p>
+<p>$$\widetilde{\mathbb{P}}(\cup _{k&#x3D;1}^\infty A_k)&#x3D;\widetilde{\mathbb{P}}(B_\infty)&#x3D;\int_\Omega \mathbb{I}_{B_\infty}(\omega)Z(\omega)d\mathbb{P}(\omega)\\&#x3D;\lim_{n\to \infty}\int_\Omega \mathbb{I}_{B_n}(\omega)Z(\omega)d\mathbb{P}(\omega)\\&#x3D;\lim_{n\to \infty}\sum\int_\Omega\mathbb{I}_{A_k}(\omega)Z(\omega)d\mathbb{P}(\omega)&#x3D;\sum_{k&#x3D;1}^\infty\widetilde{\mathbb{P}}(A_k)$$</p>
+<p><strong>Definition</strong> 如果两个概率测度下sigma代数中零概率的集合相同，那么称两个概率测度为equivalent</p>
+<p>在金融中，实际概率测度和风险中性概率测度就是equivalent的，在risk neutral world中almost work的hedge在actual world中一定也almost surely work</p>
+<p><strong>Definition</strong> 对于equivalent的两个概率测度以及它们之间的almost surely positive random variable, 这个随机变量$Z$称之为Radon-Nikodym derivative of$\widetilde{\mathbb{P}}$ with respect to $\mathbb{P}$ and we write $Z&#x3D;\frac{d\widetilde{\mathbb{P}}}{d\mathbb{P}}$, $Z$ 的存在性成为Radon-Nikodym Theorem</p>
+<h1 id="Information-and-Conditioning"><a href="#Information-and-Conditioning" class="headerlink" title="Information and Conditioning"></a>Information and Conditioning</h1>
       
     </div>
 
@@ -299,7 +357,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/22/hello%20world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/30/hello%20world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -313,7 +371,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/22/hello%20world/" class="post-title-link" itemprop="url">hello world!</a>
+            <a href="/2022/01/30/hello%20world/" class="post-title-link" itemprop="url">hello world!</a>
         </h2>
 
         <div class="post-meta">
@@ -322,9 +380,8 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-22 15:38:13 / 修改时间：15:47:04" itemprop="dateCreated datePublished" datetime="2022-01-22T15:38:13+08:00">2022-01-22</time>
+              <time title="创建时间：2022-01-30 16:54:21" itemprop="dateCreated datePublished" datetime="2022-01-30T16:54:21+08:00">2022-01-30</time>
             </span>
 
           
