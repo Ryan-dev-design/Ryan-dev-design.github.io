@@ -1,6 +1,7 @@
 ---
 layout: posts
 title: Stochastic Calculus for Finance
+date: 2022-01-25
 categories: 学习笔记
 tags: [金融,数学]
 
