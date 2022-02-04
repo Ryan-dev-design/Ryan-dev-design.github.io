@@ -188,7 +188,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-30 19:56:56" itemprop="dateModified" datetime="2022-01-30T19:56:56+08:00">2022-01-30</time>
+                <time title="修改时间：2022-02-04 23:48:41" itemprop="dateModified" datetime="2022-02-04T23:48:41+08:00">2022-02-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -344,71 +344,102 @@
 <p><strong>Definition</strong> 如果两个概率测度下sigma代数中零概率的集合相同，那么称两个概率测度为equivalent</p>
 <p>在金融中，实际概率测度和风险中性概率测度就是equivalent的，在risk neutral world中almost work的hedge在actual world中一定也almost surely work</p>
 <p><strong>Definition</strong> 对于equivalent的两个概率测度以及它们之间的almost surely positive random variable, 这个随机变量$Z$称之为Radon-Nikodym derivative of$\widetilde{\mathbb{P}}$ with respect to $\mathbb{P}$ and we write $Z&#x3D;\frac{d\widetilde{\mathbb{P}}}{d\mathbb{P}}$, $Z$ 的存在性成为Radon-Nikodym Theorem</p>
-<h1 id="Information-and-Conditioning"><a href="#Information-and-Conditioning" class="headerlink" title="Information and Conditioning"></a>Information and Conditioning</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/25/hello%20world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ryan Liu">
-      <meta itemprop="description" content="一个咸鱼的笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="QUANTNOTE">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/25/hello%20world/" class="post-title-link" itemprop="url">hello world!</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-25 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-25T00:00:00+08:00">2022-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-30 19:56:20" itemprop="dateModified" datetime="2022-01-30T19:56:20+08:00">2022-01-30</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这是我的第1篇post</p>
+<h1 id="Information-and-Conditioning"><a href="#Information-and-Conditioning" class="headerlink" title="Information and Conditioning"></a>Information and Conditioning</h1><h2 id="Information-and-sigma-algebras"><a href="#Information-and-sigma-algebras" class="headerlink" title="Information and $\sigma$-algebras"></a>Information and $\sigma$-algebras</h2><p>The hedge must specify what position we will take in the underlying security at each future time contingent on how the uncertainty between the present time and that future time is resolved.</p>
+<p><strong>resolve sets by information</strong></p>
+<p>$\Omega$ is the set of 8 possible outcomes of 3 coin tosses,</p>
+<p>$A_H&#x3D;{HHH,HHT,HTH,HTT},A_T&#x3D;{THH,THT,TTH,TTT}$</p>
+<p>if we are told the first coin toss only. the four sets that are resolved by the first coin toss form the $\sigma$-algebra</p>
+<p>$\mathcal{F}_1&#x3D;{\phi,\Omega,A_H,A_T}$</p>
+<p>this $\sigma$-algebra contains the information learned by observing the first coin toss.</p>
+<p>如果某几个集合是resolved，那么他们的并，以及各自的补也是resolved，符合$\sigma$-algebra</p>
+<p><strong>Definition</strong> let $\Omega$ be a nonempty set. Let $T$ be a fixed positive number and assume that for each $t\in [0,T]$ there is a $\sigma-algebra$  $\mathcal{F}(t)$. Assume further that if $s\le t$, then every set in $\mathcal{F}(s)$ is also in $\mathcal{F}(t)$. Then we call the collection of $\sigma-algebra$ $\mathcal{F}(t)$ a filtration.</p>
+<p>At time $t$ we can know whether the true $\omega$  lies in a set in $\mathcal{F}(t)$</p>
+<p>Let $\Omega&#x3D;C_0[0,T]$, and assign probability to the sets in $\mathcal{F}&#x3D;\mathcal{F}(T)$, then the paths $\omega\in C_0[0,T]$ will be the paths of the <strong>Brownian motion</strong>.</p>
+<p><strong>Definition</strong> Let $X$ be a random variable defined on a nonempty sample space $\Omega$. The $\sigma-algebra$ generated by $X$, denoted $\sigma(X)$, is the collection of all subsets of $\Omega$ of the form ${X\in B}$, $B$<br>  <strong>ranges over</strong> the Borel subsets of $\mathbb{R}$</p>
+<p>这里的区别和简并有点像，随机变量是本征值，Filtration是量子态</p>
+<p><strong>Definition</strong>  Let $X$ be a random variable defined on a nonempty sample space $\Omega$. Let  $\mathcal{G}$ be a $\sigma-algebra$ of subsets of $\Omega$. If every set in $\sigma(X)$ is also in $\mathcal{G}$, we say that $X$ is $\mathcal{G}-measurable$</p>
+<p>意味着$\mathcal{G}$ 中的信息足够决定$X$ 的值。对于borel可测函数$f$，$f(X)$也是$\mathcal{G}-measurable$的。对于多元函数同样成立</p>
+<p><strong>Definition</strong> Let  $\Omega$ be a nonempty sample space equipped with a filtration $\mathcal{F}(t)$. Let </p>
+<p>$X(t)$ be a collection of random variables indexed by $t\in [0,T]$, We say this collection of random variables is an adapted stochastic process if, for each $t$, the random variable $X(t)$ is $\mathcal{F}(t)-measurable$ </p>
+<h2 id="Independence"><a href="#Independence" class="headerlink" title="Independence"></a>Independence</h2><p>对于一个随机变量和一个$\sigma-algebra$ $\mathcal{G}$, measurable 和 independent 是两种极端，但大部分情况下，$\mathcal{G}$中但信息可以估计$X$， 但不足以确定$X$的值。</p>
+<p>Independence会受到概率度量的影响，但measurability不会。</p>
+<p>probability space $(\Omega,\mathcal{F},\mathbb{P})$,$\mathcal{G}\in \mathcal{F}, \mathcal{H}\in \mathcal{F}$, $\Omega$ 中的两个$\sigma-algebra$$A$和$B$独立如果$\mathbb{P}(A\cap B)&#x3D;\mathbb{P}(A)\cdot\mathbb{P}(B)$, for all $A\in \mathcal{G},B\in \mathcal{H}$</p>
+<p>独立的定义可以拓展到随机变量($\sigma-algebra$ they generate are independent)之间，随机变量与$\sigma-algebra$之间。</p>
+<p><strong>Definition</strong>  $(\Omega,\mathcal{F},\mathbb{P})$ is a probability space and let $\mathcal{G}_1,\mathcal{G}_2,\mathcal{G}_3\dots$ be a sequence of $sub-\sigma-algebra$ of $\mathcal{F}$. For a fixed positive integer n, we say that the n $\sigma-algebra$s $\mathcal{G}_1,\mathcal{G}_2,\mathcal{G}_3\dots\mathcal{G}_n$ are independent if$\mathbb{P}(A_1\cap A_2\cap \dots\cap A_n)&#x3D;\mathbb{P}<br>(A_1)\mathbb{P}<br>(A_2)\dots \mathbb{P}<br>(A_n)$ for all $A_i\in \mathcal{G}_i$</p>
+<p>这个同样也可以拓展到随机变量之间以及随机变量与$\sigma-algebra$之间。</p>
+<p><strong>Theorem</strong> Let $X$ and $Y$ be independent random variables, and let $f$  and $g$ be Borel measurable functions on $\mathbb{R}$. Then$f(X)$ and $g(Y)$ are independent random variables.</p>
+<p>PROOF</p>
+<p>Let $A$ be in the $\sigma-algebra$ generated by $f(X)$. This $\sigma-algebra$ is a $sub-\sigma -algebra$ of $\sigma(X)$. </p>
+<p>这很自然，every set in $A$ is of the form${\omega \in \Omega;f(X(\omega))\in C}\text{,where }C\text{ is a Borel subset of }\mathbb{R}$. 只需要定义$D&#x3D;{x\in \mathbb{R};f(x)\in C}$. Then we know$A\in \sigma(X)$. Let $B$ be the $\sigma-algebra$ gnenerated by $g(Y)$, then $B\in \sigma(Y)$. 由于$X,Y$独立，所以$A,B$独立。</p>
+<p><strong>Definition</strong> Let$X$ and $Y$ be random variables. The pair of random variables$(X,Y)$ takes values in the plane$\mathbb{R}^2$, and the joint distribution measure of $(X,Y)$ is given by$\mu_{X,Y}(C)&#x3D;\mathbb{P}{(X,Y)\in C}$ for all Borel sets $C\in \mathbb{R}^2$</p>
+<p>同样满足概率度量的两个条件：全空间测度为1，以及countable additivity preperty</p>
+<p><strong>Theorem</strong> Let $X$ and $Y$ be random variables. The following conditions and equivalent.</p>
+<ol>
+<li><p>$X$ and  $Y$ are independent</p>
+</li>
+<li><p>the joint distribution measure factors:</p>
+<p> $\mu_{X,Y}(A\times B)&#x3D;\mu_X(A)\mu_Y(B)$ for all Borel subsets$A\in \mathbb{R},B\in\mathbb{R}$</p>
+</li>
+<li><p>the joint cumulative distribution function factors</p>
+<p> $F_{X,Y}(a,b)&#x3D;F_X(a)F_Y(b)$ for all $a\in \mathbb{R},b\in \mathbb{R}$</p>
+</li>
+<li><p>the joint moment-generating function factor:(矩母函数）</p>
+<p> $\mathbb{E}e^{uX+vY}&#x3D;\mathbb{E}e^{uX}\cdot\mathbb{E}e^{vY}$</p>
+</li>
+<li><p>the joint density factors(if there is one)</p>
+<p> $f_{X,Y}(x,y)&#x3D;f_X(x)f_Y(y)$ for almost every$x\in\mathbb{R},y\in\mathbb{R}$</p>
+</li>
+</ol>
+<p>conditions above imply but are not equivalent to:</p>
+<ol>
+<li>$\mathbb{E}[XY]&#x3D;\mathbb{E}X\cdot\mathbb{E}Y$ provided $\mathbb{E}|XY|&lt;\infty$</li>
+</ol>
+<p><strong>Definition</strong> Let $X$ be a random variable whose expected value is defined. The variance of $X$, denoted $Var(X)$ is $Var(X)&#x3D;\mathbb{E}[(X-\mathbb{E}X)^2]&#x3D;\mathbb{E}[X^2]-(\mathbb{E}X)^2$</p>
+<p>covariance of $X$ and $Y$ is $Cov(X,Y)&#x3D;\mathbb{E}[(X-\mathbb{E}X)(Y-\mathbb{E}Y)]&#x3D;\mathbb{E}[XY]-\mathbb{E}X\cdot\mathbb{E}Y$</p>
+<p>correlation coefficient of $X$and $Y$ is $\rho(X,Y)&#x3D;\frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}$</p>
+<p>if $\rho(X,Y)&#x3D;0$, we say that $X$ and $Y$ are uncorrelated</p>
+<h2 id="General-Conditional-Expectations"><a href="#General-Conditional-Expectations" class="headerlink" title="General Conditional Expectations"></a>General Conditional Expectations</h2><p><strong>Definition</strong> Let$(\Omega,\mathcal{F},\mathbb{P})$ be a probability space, let $\mathcal{G}$ be a sub-$\sigma$-algebra of $\mathcal{F}$, and let $X$ be a random variable that is either nonnegative or integrable. The conditional expectation of $X$ given $\mathcal{G}$, denoted$\mathbb{E}[X|\mathcal{G}]$, is any random variable that satisfies</p>
+<ol>
+<li><strong>Measurability $\mathbb{E}[X|\mathcal{G}]$</strong>  is $\mathcal{G}$ measurable</li>
+<li><strong>Partial averaging $\int_A\mathbb{E}[X|\mathcal{G}(\omega)]&#x3D;\int_AX(\omega)d\mathbb{P}(\omega)$</strong> for all $A\in \mathcal{G}$</li>
+</ol>
+<p>If $\mathcal{G}$ is generated by some other random variable $W$, then we can write$\mathbb{E}[X|W]$</p>
+<p>(1) means although the estimate of $X$based on the information in $\mathcal{G}$ is itself a random variable, the value of the estimate $\mathbb{E}[X|\mathcal{G}]$ can be determined from the information in $\mathcal{G}$</p>
+<p>存在性可以由Radon-Nikodym Theorem证明</p>
+<p>唯一性的证明如下：If $Y$ and $Z$ both satisfy conditions, then their difference $Y-Z$ is as well, and thus the set $A&#x3D;{Y-Z&gt;0}$ is in $\mathcal{G}$. 根据(2),$\int_AY(\omega)d\mathbb{P}(\omega)&#x3D;\int_AX(\omega)d\mathbb{P}(\omega)&#x3D;\int_AZ(\omega)d\mathbb{P}(\omega)$</p>
+<p>Hence $Y&#x3D;Z$ almost surely.</p>
+<p><strong>Theorem</strong> Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space and let $\mathcal{G}$ be a sub-$\sigma$-algebra of $\mathcal{F}$</p>
+<ol>
+<li><p>linearity of conditional expectations<br>$\mathbb{E}[c_1X+c_2Y|\mathcal{G}]&#x3D;c_1\mathbb{E}[X|\mathcal{G}]+c_2\mathbb{E}[Y|\mathcal{G}]$</p>
+</li>
+<li><p>taking out what is known. </p>
+<p> If $X$ is $\mathcal{G}$-measurable</p>
+<p> $\mathbb{E}[XY|\mathcal{G}]&#x3D;X\mathbb{E}[Y|\mathcal{G}]$</p>
+</li>
+<li><p>iterated conditioning.</p>
+<p> If $\mathcal{H}$ is a sub-$\sigma$-algebra of $\mathcal{G}$ and $X$ is an integrable random variable, then</p>
+<p> $\mathbb{E}[\mathbb{E}[X|\mathcal{G}]|\mathcal{H}]&#x3D;\mathbb{E}[X|\mathcal{H}]$</p>
+</li>
+<li><p>independence</p>
+<p> If $X$ is independent of $\mathcal{G}$, then $\mathbb{E}[X|\mathcal{G}]&#x3D;\mathbb{E}X$</p>
+</li>
+<li><p>conditional Jensen’s inequality</p>
+<p> $\mathbb{E}[\phi(X)|\mathcal{G}]\ge\phi(\mathbb{E}[X|\mathcal{G}])$</p>
+</li>
+</ol>
+<p><strong>Lemma</strong> Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space, and let $\mathcal{G}$ be a sub-$\sigma$-algebra of $\mathcal{F}$. Suppose the random variables $X_1,\dots,X_K$ are $\mathcal{G}$-measurable and the random variables$Y_1,\dots,Y_L$ are independent of $\mathcal{G}$. Let $f(x_1,\dots,x_K,y_1,\dots,y_L)$ be a function of the dummy variables, and define: </p>
+<p>$g(x_1,\dots,x_K)&#x3D;\mathbb{E}f(x1,\dots,x_K,Y_1,\dots,Y_L)$</p>
+<p>This means holding $X_i$ constant and integrate out $Y_i$.</p>
+<p>Then,$\mathbb{E}[f(X_1,\dots,X_K,Y_1,\dots,Y_L)|\mathcal{G}]&#x3D;g(X_1,\dots,X_K)$</p>
+<p><strong>Definition</strong> Let $(\Omega,\mathcal{F},\mathbb{P})$  be a probability space, let $T$ be a fixed positive number, and let $\mathcal{F}(t)$, $0\le t\le T$, be a filtration of $sub-\sigma-algebra$ of $\mathcal{F}$. Consider an adapted stochastic process $M(t)$:</p>
+<ol>
+<li>If $\mathbb{E}[M(t)|\mathcal{F}(s)]&#x3D;M(s)$ for all $0\le s\le t \le T$, this process is a <em><strong>martingale</strong></em>. It has no tendency to rise or fall.</li>
+<li>If $\mathbb{E}[M(t)|\mathcal{F}(s)]\le M(s)$ for all $0\le s\le t \le T$, this process is a <em><strong>supermartingale</strong></em>. It has no tendency to rise, it may have a tendency to fall.</li>
+<li>If $\mathbb{E}[M(t)|\mathcal{F}(s)]\ge M(s)$ for all $0\le s\le t \le T$, this process is a <em><strong>submartingale</strong></em>. It has no tendency to fall, it may have a tendency to rise.</li>
+</ol>
+<p><strong>Definition</strong> Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space, let $T$ be a fixed positive number, and let  $\mathcal{F}(t)$, $0\le t\le T$, be a filtration of $sub-\sigma-algebra$ of $\mathcal{F}$. Consider an adapted stochastic process $X(t)$. Assume that for all $0\le s\le t\le T$ and for every nonnegative, Borel-measuable function $f$, there is another Borel-measuable function $g$ such that:</p>
+<p>$\mathbb{E}[f(X(t))|\mathcal{F}(s)]&#x3D;g(X(s))$</p>
+<p>Then we say that the X is a Markov process</p>
 
       
     </div>
@@ -490,7 +521,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
