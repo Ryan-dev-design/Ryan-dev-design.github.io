@@ -406,3 +406,359 @@ Then,$\mathbb{E}[f(X_1,\dots,X_K,Y_1,\dots,Y_L)|\mathcal{G}]=g(X_1,\dots,X_K)$
 $\mathbb{E}[f(X(t))|\mathcal{F}(s)]=g(X(s))$
 
 Then we say that the X is a Markov process
+
+# Brownian Motion
+
+## Scaled Random Walks
+
+### Symmetric Random Walk
+
+To build a **symmetric random walk** we repeatedly toss a fair coin.
+
+$X_j=\begin{cases}1 \text{ if }\omega_j=H\\\\-1\text{ if }\omega_j=T\end{cases}$
+
+$M_0=0$, $M_k=\sum_{j=1}^kX_j$
+
+the process $M_k$ is a *symmetric random walk.*
+
+### Increments of the Symmetric Random Walk
+
+A random walk has independent increments(独立增量性）
+
+if we choose nonnegative integers$0=k_0<k_1<\cdots<k_m$ , the random variables $M_{k_i}-M_{k_{i-1}}$ are independent.
+
+Each of these random variables $M_{k_i}-M_{k_{i-1}}=\sum_{j=k_{i+1}}^{k_{i+1}}X_j$ is called an increment of the random walk. 
+
+Each increment has expected value 0 and variance $k_{i+1}-k_i$ . The variance is obvious because $X_j$ are independent.
+
+### Martingale Property for the Symmetric Random Walk
+
+We choose nonnegative integers $k<l$ and compute:
+
+$\mathbb{E}[M_l|\mathcal{F}_k]=\mathbb{E}[(M_l-M_k)+M_k|\mathcal{F}_k]=\mathbb{E}[M_l-M_k|\mathcal{F}_k]+\mathbb{E}[M_k|\mathcal{F}_k]=M_k$
+
+### Quadratic Variation of the Symmetric Random Walk
+
+the quadratic variation up to time $k$ is defined to be  $[M,M]_k=\sum\_{j=1}^k(M\_j-M\_{j-1})^2=k$
+
+This is computed path-by-path. taking all the one step increments $M_j-M_{j-1}$ along that path, squaring these increments, and then summing them.
+
+Note that $[M,M]_k$ is the same as $Var(M_k)$, but the computations of these two quantities are quite different. $Var$ is computed by taking an average over all paths, taking their probability into account. If the random walk is not symmetric, the probability distribution would affect $Var$. On the contrary, the probability up and down do not affect the quadratic variation computation.
+
+### Scaled Symmetric Random Walk
+
+We fix a positive integer $n$ and define the **scaled symmetric random walk** $W^{(n)}(t)=\frac{1}{\sqrt{n}}M_{nt}$. If $nt$ is not an integer, we define $W^{(n)}(t)$ by linear interpolation between its values at the nearest points $s$ and $u$ to the left and right of $t$ for which $ns$ and $nu$ are integers. 
+
+A Brownian motion is a scaled symmetric random walk with $n\to \infty$
+
+$\mathbb{E}(W^{(n)}(t)-W^{(n)}(s))=0,Var(W^{(n)}(t)-W^{(n)}(s))=t-s$
+
+Let $0\le s\le t$ be given, and decompose $W^{(n)}(t)$ as: $W^{(n)}(t)=(W^{(n)}(t)-W^{(n)}(s))+W^{(n)}(s)$ 
+
+$(W^{(n)}(t)-W^{(n)}(s))$ is independent of $\mathcal{F}(s)$, the $\sigma-algebra$ of information available at time s, and $W^{(n)}(s)$ is $\mathcal{F}(s)$ measurable. So $\mathbb{E}[W^{(n)}(t)|\mathcal{F}(s)]=W^{(n)}(s)$
+
+The **quadratic variation** of the scaled random walk: 
+
+$\[W^{(n)},W^{(n)}\]\(t\)=\sum\_{j=1}^{nt}[W^{(n)}(\frac{j}{n})-W^{(n)}(\frac{j-1}{n})]^2=\sum\_{j=1}^{nt}[W^{(n)}[\frac{1}{\sqrt{n}}X_j]^2=\sum\_{j=1}^{nt}\frac{1}{n}=t$
+
+### Limiting Distribution of the Scaled Random Walk
+
+**Theorem: Central limit** Fix $t\ge 0$. As $n\to \infty$, the distribution of the scaled random walk $W^{(n)}(t)$ evaluated at time $t$ converges to the normal distribution with mean zero and variance $t$.
+
+PROOF
+
+For the normal density $f(s)=\frac{1}{\sqrt{2\pi t}}e^{-\frac{x^2}{2t}}$, the moment-generating function is 
+
+$\phi(u)=\frac{1}{\sqrt{2\pi t}}\int_{-\infty}^\infty \exp\{ux-\frac{x^2}{2t}\}dx=e^{\frac{1}{2}u^2t}$
+
+If $t$ is such that $nt$ is an integer, then the moment-generating function for $W^{(n)}(t)$ is:
+
+$\phi_n(u)=\mathbb{E}e^{uW^{(n)}(t)}=\mathbb{E}\exp\{\frac{u}{\sqrt{n}}M_{nt}\}=\mathbb{E}\exp\{\frac{u}{\sqrt{n}}\sum_{j=1}^{nt}X_j\}=\mathbb{E}\prod_{j=1}^{nt}\exp\{\frac{u}{\sqrt{n}}X_j\}\\\\=\prod_{j=1}^{nt}\mathbb{E}\exp\{\frac{u}{\sqrt{n}}X_j\}=\prod_{j=1}^{nt}(\frac{e^{\frac{u}{\sqrt{n}}}+e^{\frac{-u}{\sqrt{n}}}}{2})=(\frac{e^{\frac{u}{\sqrt{n}}}+e^{\frac{-u}{\sqrt{n}}}}{2})^{nt}$
+
+when $n\to \infty$ , $\phi(u)=e^{\frac{1}{2}u^2t}$
+
+### Log-Normal Distribution as the Limit of the Binomial Model
+
+We build a model for a stock price on the time interval from $0$ to $t$ by choosing an integer $n$  and constructing a binomial model for the stock price that takes $n$ steps per unit time. Up factor $u_n=1+\frac{\sigma}{\sqrt{n}}$, down factor $u_d=1-\frac{\sigma}{\sqrt{n}}$. $r=0.$
+
+The risk-neutral probabilities are then:
+
+$\tilde{p}=\frac{1+r-d_n}{u_n-d_n}=\frac{1}{2}$, $\tilde{q}=\frac{u_n-1-r}{u_n-d_n}=\frac{\sigma/\sqrt{n}}{2\sigma/\sqrt{n}}=\frac{1}{2}$
+
+Random walk $M_{nt}=H_{nt}-T_{nt}$, while $nt=H_{nt}+T_{nt}$
+
+the stock price at time $t$ is $S_n(t)=S(0)u_n^{H_{nt}}d_n^{T_{nt}}=S(0)(1+\frac{\sigma}{\sqrt{n}})^{\frac{1}{2}(nt+M_{nt})}(1+\frac{\sigma}{\sqrt{n}})^{\frac{1}{2}(nt+M_{nt})}(1-\frac{\sigma}{\sqrt{n}})^{\frac{1}{2}(nt-M_{nt})}$
+
+we need to identify the distribution of this random variable as $n\to \infty$
+
+**Theorem** As $n\to \infty$ , the distribution of $S_n(t)$ converges to the distribution of
+
+$S(t)=S(0)\exp\{\sigma W(t)-\frac{1}{2}\sigma^2t\}$ 
+
+$W(t)$ is a normal random variable with mean zero and variance $t$
+
+PROOF:
+
+$\log S_n(t)\\\\=\log S(0)+\frac{1}{2}(nt+M_{nt})\log (1+\frac{\sigma}{\sqrt{n}})+\frac{1}{2}(nt-M_{nt})\log (1-\frac{\sigma}{\sqrt{n}})\\\\=\log S(0)+\frac{1}{2}(nt+M_{nt})(\frac{\sigma}{\sqrt{n}}-\frac{\sigma^2}{2n}+O(n^{-3/2}))+\frac{1}{2}(nt-M_{nt})(\frac{\sigma}{-\sqrt{n}}-\frac{\sigma^2}{2n}+O(n^{-3/2}))\\\\=\log S(0)+nt(-\frac{\sigma^2}{2n}+O(n^{-3/2}))+M_{nt}(\frac{\sigma}{\sqrt{n}}+O(n^{-3/2}))=\log S(0)-\frac{1}{2}\sigma^2t+\sigma W^{(n)}(t)$
+
+By the **Central Limit Theorem,** we know that $\frac{1}{\sqrt{n}}M_{nt}=W^{(n)}(t)\to W(t), \text{when }n\to \infty$
+
+## Brownian Motion
+
+### Definition of Brownian Motion
+
+**Definition** Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space. For each $\omega\in\Omega$, suppose there is a continuous function $W(t)$ of $t\ge 0$ that satisfies $W(0)=0$ that depends on $\omega$. Then $W(t),t\ge 0$ is a Brownian motion if for all $t_i$ the increments $W(t_i)-W(t_{i-1})$ are independent and each of these increments is normally distributed with $\mathbb{E}[W(t_{i+1})-W(t_i)]=0,Var[W(t_{i+1})-W(t_i)]=t_{i+1}-t_i$
+
+Difference between BM and a scaled random walk: the scaled random walk has a natural time step and is linear between these time steps, whereas the BM has no linear pieces.
+
+### Distribution of Brownian Motion
+
+For any two times, the covariance of $W(s)$ and $W(t)$  for $s\le t$ is
+
+$\mathbb{E}[W(s)W(t)]=\mathbb{E}[W(s)(W(t)-W(s))+W^2(s)]=\mathbb{E}[W(s)]\mathbb{E}[(W(t)-W(s))]+\mathbb{E}[W^2(s)]=s$
+
+We compute the moment-generating function of the random vector$(W(t_1),W(t_2),\dots,W(t_m))$
+
+$\phi=\mathbb{E}\exp\{u_mW(t_m)+\dots+u_1W(t_1)\}=\mathbb{E}\exp\{u_m(W(t_m)-W(t_{m-1}))+\dots+(u_1+u_2+\dots+u_m)W(t_1)\}=\mathbb{E}\exp\{u_m(W(t_m)-W(t_{m-1}))\}\cdots \mathbb{E}\exp\{(u_1+u_2+\cdots+u_m)W(t_1)\}=\exp\{\frac{1}{2}u_m^2(t_m-t_{m-1})\}\cdots\exp\{(u_1+u_2+\cdots+u_m)^2t_1\}$
+
+The distribution of the Brownian increments can be specified by specifying the joint density or the joint moment-generating function of the random variables
+
+**Theorem** Let$(\Omega,\mathcal{F},\mathbb{P})$ be a probability space. For each $\omega\in\Omega$, suppose there is a continuous function $W(t)$ of $t\ge 0$ that satisfies $W(0)=0$ and that depends on $\omega$. 
+
+1. For all $0< t_0< t_1\cdots <t_m$, the increments are independent and each of these increments is normally distributed with mean and variance given by$\mathbb{E}[W(t_{i+1})-W(t_i)]=0,Var[W(t_{i+1})-W(t_i)]=t_{i+1}-t_i$
+2. For all $0< t_0< t_1\cdots <t_m$, the random variables $W(t_i)$ are jointly normally distributed with means equal to zero and covariance matrix
+    
+    $\begin{pmatrix}    t_{1} &t_1 \cdots & t_{1} \\\\  t_1&t_2\cdots &t_2\\\\  \vdots & \ddots & \vdots \\\\    t_{1} &t_2 \cdots & t_{m}  \end{pmatrix}$ 
+    
+3. the random variables have the joint moment-generating function mentioned before
+
+### Filtration for Brownian Motion
+
+**Definition** Let$(\Omega,\mathcal{F},\mathbb{P})$ be a probability space on which is defined a Brownian motion $W(t),t\ge 0$. A filtration for the Brownian motion is a collection of $\sigma$-algebra $\mathcal{F}(t),t\ge 0$, satisfying:
+
+1. **Information accumulates**
+2. **Adaptivity: $W(t)$** is **$\mathcal{F}(t)$**-measurable
+3. **Independence of future increments**
+
+$\Delta(t),t\ge0$, be a stochastic process. $\Delta(t)$ is adapted to the filtration $\mathcal{F}(t)$ if for each $t\ge 0$ the random variable $\Delta(t)$ if $\mathcal{F}(t)$-measurable.
+
+There are two possibilities for the filtration $\mathcal{F}(t)$ for a Brownian motion. 
+
+1. to let $\mathcal{F}(t)$ contain only the info obtained by observing the BM itself up to time $t$. 
+2. to include in $\mathcal{F}(t)$ info obtained by observing the BM and one or more other processes. But if the info in $\mathcal{F}(t)$ includes observations of processes other than the BM $W$, this additional info is not allowed to give clues about the future increments because of property iii
+
+### Martingale Property for Brownian Motion
+
+**Theorem** Brownian motion is a martingale
+
+## Quadratic Variation
+
+For BM, there is no natural step size. If we are given $T>0$, we could simply choose a step size, say $\frac{T}{n}$ for some large $n$, and compute the quadratic variation up to time $T$ with this step size:
+
+$\sum_{j=0}^{n-1}[W(\frac{(j+1)T}{n})-W(\frac{jT}{n})]^2$
+
+The variation of paths of BM is not zero, which makes stochastic calculus different from ordinary calculus
+
+### First-Order Variation
+
+$FV_T(f)=|f(t_1)-f(0)|+|f(t_2)-f(t_1)|+\dots+|f(T)-f(t_2)|=\int_0^{t_1}f'(t)dt+\dots+\int_{t_2}^Tf'(t)dt=\int_0^T|f'(t)|dt$
+
+We first choose a partition $\Pi=\{t_0,t_1,\dots,t_n\}$ of $[0,T]$, which is a set of times. These will serve to determine the step size. The maximum step size of the partition will be denoted $\Vert\Pi\Vert=\max_{j=0,\dots,n-1}(t_{j+1}-t_j)$. We then define:
+
+$FV_T(f)=\lim_{\Vert\Pi\Vert\to0}\sum_{j=0}^{n-1}\vert f(t_{j+1})-f(t_j)\vert$
+
+用中值定理可以证明与积分相等
+
+### Quadratic Variation
+
+**Definition** Let $f(t)$  be a function defined for $0\le t\le T$. The quadratic variation to $f$ up to time $T$ is 
+
+$[f,f]\(T\)=\lim\_{\Vert\Pi\Vert\to0}\sum\_{j=0}^{n-1}\vert f(t\_{j+1})-f(t\_j)\vert$
+
+if $f$ is derivative, then $[f,f](T)=0$
+
+if $\int_0^T\vert f'(t^*_j)\vert ^2dt$ is infinite, then $[f,f]\(T\)$ lead to a $0\cdot\infty$ situation, which can be anything  between $0$ and $\infty$
+
+**Theorem** Let $W$ be a Brownian motion. Then $[W,W]\(T\)=T$ for all $T\ge 0$ almost surely.
+
+PROOF
+
+Define the *sample quadratic variation* corresponding to the partition of $[0,T]$,  $\Pi =\{t_0,t_1,\dots,t_n\}$ to be
+
+ $Q_\Pi=\sum_{j=0}^{n-1}(W(t_{j+1})-W(t_j))^2$
+
+We can show that $Q_\Pi$ converges to $T$ as $\Vert\Pi\Vert\to0$
+
+$\mathbb{E}[(W(t_{j+1})-W(t_j))^2]=Var[W(t_{j+1})-W(t_j)]=t_{j+1}-t_j$ implies:
+
+$\mathbb{E}Q_\Pi=\sum\mathbb{E}[(W(t_{j+1})-W(t_j))^2]=\sum(t_{j+1}-t_j)=T$
+
+$Var[(W(t_{j+1})-W(t_j))^2]=\mathbb{E}[(W(t_{j+1})-W(t_j))^4]-2(t_{j+1}-t_j)\mathbb{E}[(W(t_{j+1})-W(t_j))^2]+(t_{j+1}-t_j)^2$
+
+$\mathbb{E}[(W(t_{j+1})-W(t_j))^4]=3(t_{j+1}-t_j)^2$,$\mathbb{E}[(W(t_{j+1})-W(t_j))^2]=t_{j+1}-t_j$
+
+PROOF
+
+By Ito’s formula, we have
+
+$𝑊^4(t)=4\int^𝑡_0𝑊^3_s𝑑𝑊_s+6\int^𝑡_0𝑊^2_sds$
+
+$M(t):=\int_0^tW_s^3dW_s=0$ is a martingale and $\mathbb{E}M(t)=\mathbb{E}M(0)=0$
+
+$\mathbb{E}W^4(t)=6\int_0^t\mathbb{E}[W_s^2]ds=6\int_0^tsds=3t^2$
+
+so $Var[(W(t_{j+1}-W(t_j))^4]=2(t_{j+1}-t_j)^2$
+
+and $Var(Q_\Pi)=\sum 2(t_{j+1}-t_j)^2\le2\Vert\Pi\Vert T$
+
+In particular,  $\lim_{\Vert\Pi\Vert\to 0}Var(Q_\Pi)=0,lim_{\Vert\Pi\Vert\to0}Q_\Pi=\mathbb{E}Q_\Pi=T$
+
+$(W(t_{j+1})-W(t_j))^2\approx t_{j+1}-t_j$$(W(t_{j+1})-W(t_j))^2=t_{j+1}-t_j$ when $t_{j+1}-t_j$ is very small
+
+$dW(t)dW(t)=dt$ is the informal write
+
+$dWdt=0,dtdt=0$
+
+### Volatility of Geometric Brownian Motion
+
+geometric Brownian motion: $S(t)=S(0)\exp\{\sigma W(t)+(\alpha-\frac{1}{2}\sigma^2)t\}$
+
+realized volatility: the sum of the squares of the log returns
+
+for $T_1=t_0<t_1<\cdots<tm=T_2$,
+
+$\sum (\log\frac{S(t_{j+1})}{S(t_j)})^2=\sigma^2\sum(W(t_{j+1})-W(t_j))^2+(\alpha-\frac{1}{2}\sigma^2)^2\sum(t_{j+1}-t_j)^2+2\sigma (\alpha-\frac{1}{2}\sigma^2)\sum(W(t_{j+1})-W(t_j))(t_{j+1}-t_j)$
+
+When the maximum step size $\Vert\Pi\Vert=\max_{j=0,1,\dots,m-1}(t_{j+1}-t_j)$ is small, then the first term is approximately equal to its limit $\sigma^2(T_2-T_1)$,hence, we have:
+
+$\frac{1}{T_2-T_1}\sum(\log\frac{S(t_{j+1})}{S(t_j)})^2\approx\sigma^2$
+
+## Markov Property
+
+**Theorem** Let$W(t),t\ge0$, be a Brownian motion and let $\mathcal{F}(t),t\ge0$ Be a filtration for this Brownian motion. Then $W(t)$ is a Markov process
+
+PROOF
+
+We need to show:  $\mathbb{E}[f(W(t))\vert \mathcal{F}(s)]=g(W(s))$ $g$ Exists whenever given $0\le s\le t,f$
+
+$\mathbb{E}[f(W(t))\vert\mathcal{F}(s)]=\mathbb{E}[f((W(t)-W(s))+W(s))\vert\mathcal{F}(s)]$
+
+$W(t)-W(s)$ is normally distributed with mean zero and variance $t-s$
+
+Replace $W(s)$ with a dummy variable $x$
+, define $g(x)=\mathbb{E}f(W(t)-W(s)+x)$, then 
+
+$g(x)=\frac{1}{\sqrt{2\pi(t-s)}}\int f(w+x)\exp\{-\frac{w^2}{2(t-s)}\}dw=\frac{1}{\sqrt{2\pi\tau}}\int f(y)\exp\{-\frac{(y-x)^2}{2\tau}\}dy$
+
+Define the *transition density $p(\tau,x,y):=\frac{1}{\sqrt{2\pi\tau}}e^{-\frac{(y-x)^2}{2\tau}},\tau=t-s$*
+
+$g(x)=\int f(y)p(\tau,x,y)dy$ 
+
+And $\mathbb{E}[f(W(t))\vert\mathcal{F}(s)]=\int f(y)p(\tau,W(s),y)dy$
+
+Conditioned on the information in $\mathcal{F}(s)$, the conditional density of $W(t)$ is $p(\tau,W(s),y)$. This is a density in the variable $y$, normal with mean $W(s)$ and variance $\tau$. The only information from $\mathcal{F}(s)$ that is relevant is the value of $W(s)$
+
+## First Passage Time Distribution
+
+exponential martingale corresponding to $\sigma$: $Z(t)=\exp\{\sigma W(t)-\frac{1}{2}\sigma^2t\}$
+
+**Theorem** Exponential martingale  Let $W(t),t\ge 0$, be a Brownian motion with a filtration $\mathcal{F}(t),t\ge 0$, and let $\sigma$ be a constant, thew process $Z(t)$ is a martingale
+
+PROOF
+
+$\mathbb{E}[Z(t)\vert\mathcal{F}(s)]=\mathbb{E}[\exp\{\sigma W(t)-\frac{1}{2}\sigma^2t\}\vert \mathcal{F}(s)]=\mathbb{E}[\exp\{\sigma (W(t)-W(s))\}\cdot\exp\{\sigma W(s)-\frac{1}{2}\sigma^2t\}\vert \mathcal{F}(s)]=\exp\{\sigma W(s)-\frac{1}{2}\sigma^2t\}\cdot\mathbb{E}[\exp\{\sigma (W(t)-W(s))\}]$
+
+$W(t)-W(s)$ is a normal distribution with mean zero and variance $\sigma$ so $\mathbb{E}[\exp\{\sigma (W(t)-W(s))\}]=\frac{1}{2}\sigma^2(t-s)$
+
+$\mathbb{E}[Z(t)\vert\mathcal{F}(s)]=Z(s)$
+
+Let $m$ be a real number, and define the first passage time to level $m$: $\tau_m=\min\{t\ge 0;W(t)=m\}$ if the BM never reaches the level $m$, we set $\tau_m=\infty$. A martingale that is stopped at a stopping time is still martingale and thus must have constant expectation. So:
+
+$1=Z(0)=\mathbb{E}Z(t\land\tau_m)=\mathbb{E}[\exp\{\sigma W(t\land\tau_m)-\frac{1}{2}\sigma^2(t\land\tau_m)\}]$ $t\land\tau_m$ means the minimum of $t$ and $\tau_m$
+
+If $\tau_m<\infty$, the term $\exp\{-\frac{1}{2}\sigma^2(t\land\tau_m)\}$ is equal to $\exp\{-\frac{1}{2}\sigma^2\tau_m\}$ for large enough $t$. $\tau_m=\infty$, the result converges to zero. So: 
+
+$\lim\_{t\to\infty\}\exp\{\sigma W\(t\land\tau_m\)-\frac{1}{2}\sigma^2(t\land\tau_m)\}=\mathbb{I}_\{\{\tau_m<\infty\}}\exp\{\sigma m-\frac{1}{2}\sigma^2\tau_m\\}$
+
+now we can obtain:
+
+$1=\mathbb{E}[\mathbb{I}_{\{\tau_m<\infty\}}\exp\{\sigma m-\frac{1}{2}\sigma^2\tau_m\}]$
+
+$\mathbb{E}[\mathbb{I}_{\{\tau_m<\infty\}}\exp\{-\frac{1}{2}\sigma^2\tau_m\}]=e^{-\sigma m}$
+
+when $\sigma\to0$, we get $\mathbb{P}\{\tau_m<\infty\}=1$
+
+$\tau_m$ is finite almost surely, so we may drop the indicator to obtain:
+
+$\mathbb{E}[\exp\{-\frac{1}{2}\sigma^2\tau_m\}]=e^{-\sigma m}$
+
+**Theorem** For $m\in \mathbb{R}$, the first passage time of Brownian motion to level $m$ is finite almost surely, and the Laplace transform of its distribution is given by 
+
+$\mathbb{E}e^{-\alpha \tau_m}=e^{-\vert m \vert\sqrt{2\alpha}}$  for all $\alpha>0$
+
+differentiation: $\mathbb{E}[\tau_me^{-\alpha\tau_m}]=\frac{\vert m\vert}{\sqrt{2\alpha}}e^{-\vert m\vert\sqrt{2\alpha}}$ for all $\alpha>0$
+
+let $\alpha\to 0$ get obtain $\mathbb{E}\tau_m=\infty$ so long as $m\neq0$
+
+## Reflection Principle
+
+### Reflection Equality
+
+for each Brownian motion path that reaches level m prior to time t but is at a level w below m at time t, there is a "reflected path" that is at level $2m-w$ at time $t$. This reflected path is constructed by switching the up and down moves of the Brownian motion from time $\tau_m$onward.
+
+**Reflection equality**
+
+$\mathbb{P}\{\tau_m\le t,W(t)\le w\}=\mathbb{P}\{W(t)\ge 2m-w\},w\le m,m>0$
+
+### First Passage Time Distribution
+
+**Theorem** For all $m\neq0$, the random variable $\tau_m$ has cumulative distribution function:
+
+$\mathbb{P}\{\tau_m\le t\}=\frac{2}{\sqrt{2\pi}}\int_{\frac{\vert m\vert}{\sqrt{t}}}^\infty e^{-\frac{y^2}{2}}dy$
+
+$f_{\tau_m}(t)=\frac{d}{dt}\mathbb{P}=\frac{\vert m\vert}{t\sqrt{2\pi t}}e^{-\frac{m^2}{2t}}$
+
+PROOF
+
+Use the reflection equality, we obtain
+
+$\mathbb{P}\{\tau_m\le t,W(t)\le m\}=\mathbb{P}\{W(t)\ge m\}$
+
+if $W(t)\ge m$, then we are guaranteed that $\tau_m\le t$. 
+
+$\mathbb{P}\{\tau_m\le t,W(t)\ge m\}=\mathbb{P}\{W(t)\ge m\}$
+
+so,$\mathbb{P}\{\tau_m\le t\}=2\mathbb{P}\{W(t)\ge m\}=\frac{2}{\sqrt{2\pi t}}\int_{m}^\infty e^{-\frac{x^2}{2t}}dx=\frac{2}{\sqrt{2\pi}}\int_{\frac{\vert m\vert}{\sqrt{t}}}^\infty e^{-\frac{y^2}{2}}dy$
+
+### Distribution of Brownian Motion and Its Maximum
+
+define the **maximum to date** for Brownian motion
+
+$M(t)=\max_{0\le s\le t}W(s)$
+
+Use the reflection equality, we can obtain the joint distribution of $W(t)$
+ and $M(t)$
+
+**Theorem** For $t>0$, the joint density of $(M(t),W(t))$ is
+
+$f_{M(t),W(t)}(m,w)=\frac{2(2m-w)}{t\sqrt{2\pi t}}e^{-\frac{(2m-w)^2}{2t}}$
+
+PROOF
+
+$\mathbb{P}\{M(t)\ge m,W(t)\le w\}=\int_m^\infty\int_{-\infty}^wf_{M(t),W(t)}(x,y)dydx$
+
+$\mathbb{P}\{W(t)\ge 2m-w\}=\frac{1}{\sqrt{2\pi t}}\int_{2m-w}^\infty e^{-\frac{z^2}{2t}}dz$
+
+From the reflection equality, 
+
+$\frac{1}{\sqrt{2\pi t}}\int_{2m-w}^\infty e^{-\frac{z^2}{2t}}dz= \int_m^\infty\int_{-\infty}^wf_{M(t),W(t)}(x,y)dydx$
+
+Differentiate with respect to $m$
+
+$-\int_{-\infty}^wf_{M(t),W(t)}(m,y)dy=-\frac{2}{\sqrt{2\pi t}}e^{-\frac{(2m-w)^2}{2t}}$
+
+With respect to $w$, then we obtain the distribution
+
+**Corollary** 
+
+The conditional distribution of $M(t)$ given $W(t)=w$ is $f_{M(t)\vert W(t)}(m\vert w)=\frac{2(2m-w)}{t}e^{-\frac{2m(m-w)}{t}}$

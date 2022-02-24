@@ -28,7 +28,7 @@
 <meta property="og:description" content="MathJax.Hub.Config({             tex2jax: {             skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;],             inlineMath: [[&#39;$&#39;,&#39;$&#39;]]             }         });">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-02-04T15:48:41.148Z">
+<meta property="article:modified_time" content="2022-02-24T13:29:16.269Z">
 <meta property="article:author" content="Ryan Liu">
 <meta property="article:tag" content="金融">
 <meta property="article:tag" content="数学">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-04 23:48:41" itemprop="dateModified" datetime="2022-02-04T23:48:41+08:00">2022-02-04</time>
+                <time title="修改时间：2022-02-24 21:29:16" itemprop="dateModified" datetime="2022-02-24T21:29:16+08:00">2022-02-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -444,6 +444,170 @@
 <p><strong>Definition</strong> Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space, let $T$ be a fixed positive number, and let  $\mathcal{F}(t)$, $0\le t\le T$, be a filtration of $sub-\sigma-algebra$ of $\mathcal{F}$. Consider an adapted stochastic process $X(t)$. Assume that for all $0\le s\le t\le T$ and for every nonnegative, Borel-measuable function $f$, there is another Borel-measuable function $g$ such that:</p>
 <p>$\mathbb{E}[f(X(t))|\mathcal{F}(s)]&#x3D;g(X(s))$</p>
 <p>Then we say that the X is a Markov process</p>
+<h1 id="Brownian-Motion"><a href="#Brownian-Motion" class="headerlink" title="Brownian Motion"></a>Brownian Motion</h1><h2 id="Scaled-Random-Walks"><a href="#Scaled-Random-Walks" class="headerlink" title="Scaled Random Walks"></a>Scaled Random Walks</h2><h3 id="Symmetric-Random-Walk"><a href="#Symmetric-Random-Walk" class="headerlink" title="Symmetric Random Walk"></a>Symmetric Random Walk</h3><p>To build a <strong>symmetric random walk</strong> we repeatedly toss a fair coin.</p>
+<p>$X_j&#x3D;\begin{cases}1 \text{ if }\omega_j&#x3D;H\\-1\text{ if }\omega_j&#x3D;T\end{cases}$</p>
+<p>$M_0&#x3D;0$, $M_k&#x3D;\sum_{j&#x3D;1}^kX_j$</p>
+<p>the process $M_k$ is a <em>symmetric random walk.</em></p>
+<h3 id="Increments-of-the-Symmetric-Random-Walk"><a href="#Increments-of-the-Symmetric-Random-Walk" class="headerlink" title="Increments of the Symmetric Random Walk"></a>Increments of the Symmetric Random Walk</h3><p>A random walk has independent increments(独立增量性）</p>
+<p>if we choose nonnegative integers$0&#x3D;k_0&lt;k_1&lt;\cdots&lt;k_m$ , the random variables $M_{k_i}-M_{k_{i-1}}$ are independent.</p>
+<p>Each of these random variables $M_{k_i}-M_{k_{i-1}}&#x3D;\sum_{j&#x3D;k_{i+1}}^{k_{i+1}}X_j$ is called an increment of the random walk. </p>
+<p>Each increment has expected value 0 and variance $k_{i+1}-k_i$ . The variance is obvious because $X_j$ are independent.</p>
+<h3 id="Martingale-Property-for-the-Symmetric-Random-Walk"><a href="#Martingale-Property-for-the-Symmetric-Random-Walk" class="headerlink" title="Martingale Property for the Symmetric Random Walk"></a>Martingale Property for the Symmetric Random Walk</h3><p>We choose nonnegative integers $k&lt;l$ and compute:</p>
+<p>$\mathbb{E}[M_l|\mathcal{F}_k]&#x3D;\mathbb{E}[(M_l-M_k)+M_k|\mathcal{F}_k]&#x3D;\mathbb{E}[M_l-M_k|\mathcal{F}_k]+\mathbb{E}[M_k|\mathcal{F}_k]&#x3D;M_k$</p>
+<h3 id="Quadratic-Variation-of-the-Symmetric-Random-Walk"><a href="#Quadratic-Variation-of-the-Symmetric-Random-Walk" class="headerlink" title="Quadratic Variation of the Symmetric Random Walk"></a>Quadratic Variation of the Symmetric Random Walk</h3><p>the quadratic variation up to time $k$ is defined to be  $[M,M]_k&#x3D;\sum_{j&#x3D;1}^k(M_j-M_{j-1})^2&#x3D;k$</p>
+<p>This is computed path-by-path. taking all the one step increments $M_j-M_{j-1}$ along that path, squaring these increments, and then summing them.</p>
+<p>Note that $[M,M]_k$ is the same as $Var(M_k)$, but the computations of these two quantities are quite different. $Var$ is computed by taking an average over all paths, taking their probability into account. If the random walk is not symmetric, the probability distribution would affect $Var$. On the contrary, the probability up and down do not affect the quadratic variation computation.</p>
+<h3 id="Scaled-Symmetric-Random-Walk"><a href="#Scaled-Symmetric-Random-Walk" class="headerlink" title="Scaled Symmetric Random Walk"></a>Scaled Symmetric Random Walk</h3><p>We fix a positive integer $n$ and define the <strong>scaled symmetric random walk</strong> $W^{(n)}(t)&#x3D;\frac{1}{\sqrt{n}}M_{nt}$. If $nt$ is not an integer, we define $W^{(n)}(t)$ by linear interpolation between its values at the nearest points $s$ and $u$ to the left and right of $t$ for which $ns$ and $nu$ are integers. </p>
+<p>A Brownian motion is a scaled symmetric random walk with $n\to \infty$</p>
+<p>$\mathbb{E}(W^{(n)}(t)-W^{(n)}(s))&#x3D;0,Var(W^{(n)}(t)-W^{(n)}(s))&#x3D;t-s$</p>
+<p>Let $0\le s\le t$ be given, and decompose $W^{(n)}(t)$ as: $W^{(n)}(t)&#x3D;(W^{(n)}(t)-W^{(n)}(s))+W^{(n)}(s)$ </p>
+<p>$(W^{(n)}(t)-W^{(n)}(s))$ is independent of $\mathcal{F}(s)$, the $\sigma-algebra$ of information available at time s, and $W^{(n)}(s)$ is $\mathcal{F}(s)$ measurable. So $\mathbb{E}[W^{(n)}(t)|\mathcal{F}(s)]&#x3D;W^{(n)}(s)$</p>
+<p>The <strong>quadratic variation</strong> of the scaled random walk: </p>
+<p>$[W^{(n)},W^{(n)}](t)&#x3D;\sum_{j&#x3D;1}^{nt}[W^{(n)}(\frac{j}{n})-W^{(n)}(\frac{j-1}{n})]^2&#x3D;\sum_{j&#x3D;1}^{nt}[W^{(n)}[\frac{1}{\sqrt{n}}X_j]^2&#x3D;\sum_{j&#x3D;1}^{nt}\frac{1}{n}&#x3D;t$</p>
+<h3 id="Limiting-Distribution-of-the-Scaled-Random-Walk"><a href="#Limiting-Distribution-of-the-Scaled-Random-Walk" class="headerlink" title="Limiting Distribution of the Scaled Random Walk"></a>Limiting Distribution of the Scaled Random Walk</h3><p><strong>Theorem: Central limit</strong> Fix $t\ge 0$. As $n\to \infty$, the distribution of the scaled random walk $W^{(n)}(t)$ evaluated at time $t$ converges to the normal distribution with mean zero and variance $t$.</p>
+<p>PROOF</p>
+<p>For the normal density $f(s)&#x3D;\frac{1}{\sqrt{2\pi t}}e^{-\frac{x^2}{2t}}$, the moment-generating function is </p>
+<p>$\phi(u)&#x3D;\frac{1}{\sqrt{2\pi t}}\int_{-\infty}^\infty \exp{ux-\frac{x^2}{2t}}dx&#x3D;e^{\frac{1}{2}u^2t}$</p>
+<p>If $t$ is such that $nt$ is an integer, then the moment-generating function for $W^{(n)}(t)$ is:</p>
+<p>$\phi_n(u)&#x3D;\mathbb{E}e^{uW^{(n)}(t)}&#x3D;\mathbb{E}\exp{\frac{u}{\sqrt{n}}M_{nt}}&#x3D;\mathbb{E}\exp{\frac{u}{\sqrt{n}}\sum_{j&#x3D;1}^{nt}X_j}&#x3D;\mathbb{E}\prod_{j&#x3D;1}^{nt}\exp{\frac{u}{\sqrt{n}}X_j}\\&#x3D;\prod_{j&#x3D;1}^{nt}\mathbb{E}\exp{\frac{u}{\sqrt{n}}X_j}&#x3D;\prod_{j&#x3D;1}^{nt}(\frac{e^{\frac{u}{\sqrt{n}}}+e^{\frac{-u}{\sqrt{n}}}}{2})&#x3D;(\frac{e^{\frac{u}{\sqrt{n}}}+e^{\frac{-u}{\sqrt{n}}}}{2})^{nt}$</p>
+<p>when $n\to \infty$ , $\phi(u)&#x3D;e^{\frac{1}{2}u^2t}$</p>
+<h3 id="Log-Normal-Distribution-as-the-Limit-of-the-Binomial-Model"><a href="#Log-Normal-Distribution-as-the-Limit-of-the-Binomial-Model" class="headerlink" title="Log-Normal Distribution as the Limit of the Binomial Model"></a>Log-Normal Distribution as the Limit of the Binomial Model</h3><p>We build a model for a stock price on the time interval from $0$ to $t$ by choosing an integer $n$  and constructing a binomial model for the stock price that takes $n$ steps per unit time. Up factor $u_n&#x3D;1+\frac{\sigma}{\sqrt{n}}$, down factor $u_d&#x3D;1-\frac{\sigma}{\sqrt{n}}$. $r&#x3D;0.$</p>
+<p>The risk-neutral probabilities are then:</p>
+<p>$\tilde{p}&#x3D;\frac{1+r-d_n}{u_n-d_n}&#x3D;\frac{1}{2}$, $\tilde{q}&#x3D;\frac{u_n-1-r}{u_n-d_n}&#x3D;\frac{\sigma&#x2F;\sqrt{n}}{2\sigma&#x2F;\sqrt{n}}&#x3D;\frac{1}{2}$</p>
+<p>Random walk $M_{nt}&#x3D;H_{nt}-T_{nt}$, while $nt&#x3D;H_{nt}+T_{nt}$</p>
+<p>the stock price at time $t$ is $S_n(t)&#x3D;S(0)u_n^{H_{nt}}d_n^{T_{nt}}&#x3D;S(0)(1+\frac{\sigma}{\sqrt{n}})^{\frac{1}{2}(nt+M_{nt})}(1+\frac{\sigma}{\sqrt{n}})^{\frac{1}{2}(nt+M_{nt})}(1-\frac{\sigma}{\sqrt{n}})^{\frac{1}{2}(nt-M_{nt})}$</p>
+<p>we need to identify the distribution of this random variable as $n\to \infty$</p>
+<p><strong>Theorem</strong> As $n\to \infty$ , the distribution of $S_n(t)$ converges to the distribution of</p>
+<p>$S(t)&#x3D;S(0)\exp{\sigma W(t)-\frac{1}{2}\sigma^2t}$ </p>
+<p>$W(t)$ is a normal random variable with mean zero and variance $t$</p>
+<p>PROOF:</p>
+<p>$\log S_n(t)\\&#x3D;\log S(0)+\frac{1}{2}(nt+M_{nt})\log (1+\frac{\sigma}{\sqrt{n}})+\frac{1}{2}(nt-M_{nt})\log (1-\frac{\sigma}{\sqrt{n}})\\&#x3D;\log S(0)+\frac{1}{2}(nt+M_{nt})(\frac{\sigma}{\sqrt{n}}-\frac{\sigma^2}{2n}+O(n^{-3&#x2F;2}))+\frac{1}{2}(nt-M_{nt})(\frac{\sigma}{-\sqrt{n}}-\frac{\sigma^2}{2n}+O(n^{-3&#x2F;2}))\\&#x3D;\log S(0)+nt(-\frac{\sigma^2}{2n}+O(n^{-3&#x2F;2}))+M_{nt}(\frac{\sigma}{\sqrt{n}}+O(n^{-3&#x2F;2}))&#x3D;\log S(0)-\frac{1}{2}\sigma^2t+\sigma W^{(n)}(t)$</p>
+<p>By the <strong>Central Limit Theorem,</strong> we know that $\frac{1}{\sqrt{n}}M_{nt}&#x3D;W^{(n)}(t)\to W(t), \text{when }n\to \infty$</p>
+<h2 id="Brownian-Motion-1"><a href="#Brownian-Motion-1" class="headerlink" title="Brownian Motion"></a>Brownian Motion</h2><h3 id="Definition-of-Brownian-Motion"><a href="#Definition-of-Brownian-Motion" class="headerlink" title="Definition of Brownian Motion"></a>Definition of Brownian Motion</h3><p><strong>Definition</strong> Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space. For each $\omega\in\Omega$, suppose there is a continuous function $W(t)$ of $t\ge 0$ that satisfies $W(0)&#x3D;0$ that depends on $\omega$. Then $W(t),t\ge 0$ is a Brownian motion if for all $t_i$ the increments $W(t_i)-W(t_{i-1})$ are independent and each of these increments is normally distributed with $\mathbb{E}[W(t_{i+1})-W(t_i)]&#x3D;0,Var[W(t_{i+1})-W(t_i)]&#x3D;t_{i+1}-t_i$</p>
+<p>Difference between BM and a scaled random walk: the scaled random walk has a natural time step and is linear between these time steps, whereas the BM has no linear pieces.</p>
+<h3 id="Distribution-of-Brownian-Motion"><a href="#Distribution-of-Brownian-Motion" class="headerlink" title="Distribution of Brownian Motion"></a>Distribution of Brownian Motion</h3><p>For any two times, the covariance of $W(s)$ and $W(t)$  for $s\le t$ is</p>
+<p>$\mathbb{E}[W(s)W(t)]&#x3D;\mathbb{E}[W(s)(W(t)-W(s))+W^2(s)]&#x3D;\mathbb{E}[W(s)]\mathbb{E}[(W(t)-W(s))]+\mathbb{E}[W^2(s)]&#x3D;s$</p>
+<p>We compute the moment-generating function of the random vector$(W(t_1),W(t_2),\dots,W(t_m))$</p>
+<p>$\phi&#x3D;\mathbb{E}\exp{u_mW(t_m)+\dots+u_1W(t_1)}&#x3D;\mathbb{E}\exp{u_m(W(t_m)-W(t_{m-1}))+\dots+(u_1+u_2+\dots+u_m)W(t_1)}&#x3D;\mathbb{E}\exp{u_m(W(t_m)-W(t_{m-1}))}\cdots \mathbb{E}\exp{(u_1+u_2+\cdots+u_m)W(t_1)}&#x3D;\exp{\frac{1}{2}u_m^2(t_m-t_{m-1})}\cdots\exp{(u_1+u_2+\cdots+u_m)^2t_1}$</p>
+<p>The distribution of the Brownian increments can be specified by specifying the joint density or the joint moment-generating function of the random variables</p>
+<p><strong>Theorem</strong> Let$(\Omega,\mathcal{F},\mathbb{P})$ be a probability space. For each $\omega\in\Omega$, suppose there is a continuous function $W(t)$ of $t\ge 0$ that satisfies $W(0)&#x3D;0$ and that depends on $\omega$. </p>
+<ol>
+<li><p>For all $0&lt; t_0&lt; t_1\cdots &lt;t_m$, the increments are independent and each of these increments is normally distributed with mean and variance given by$\mathbb{E}[W(t_{i+1})-W(t_i)]&#x3D;0,Var[W(t_{i+1})-W(t_i)]&#x3D;t_{i+1}-t_i$</p>
+</li>
+<li><p>For all $0&lt; t_0&lt; t_1\cdots &lt;t_m$, the random variables $W(t_i)$ are jointly normally distributed with means equal to zero and covariance matrix</p>
+<p> $\begin{pmatrix}    t_{1} &amp;t_1 \cdots &amp; t_{1} \\  t_1&amp;t_2\cdots &amp;t_2\\  \vdots &amp; \ddots &amp; \vdots \\    t_{1} &amp;t_2 \cdots &amp; t_{m}  \end{pmatrix}$ </p>
+</li>
+<li><p>the random variables have the joint moment-generating function mentioned before</p>
+</li>
+</ol>
+<h3 id="Filtration-for-Brownian-Motion"><a href="#Filtration-for-Brownian-Motion" class="headerlink" title="Filtration for Brownian Motion"></a>Filtration for Brownian Motion</h3><p><strong>Definition</strong> Let$(\Omega,\mathcal{F},\mathbb{P})$ be a probability space on which is defined a Brownian motion $W(t),t\ge 0$. A filtration for the Brownian motion is a collection of $\sigma$-algebra $\mathcal{F}(t),t\ge 0$, satisfying:</p>
+<ol>
+<li><strong>Information accumulates</strong></li>
+<li><strong>Adaptivity: $W(t)$</strong> is <strong>$\mathcal{F}(t)$</strong>-measurable</li>
+<li><strong>Independence of future increments</strong></li>
+</ol>
+<p>$\Delta(t),t\ge0$, be a stochastic process. $\Delta(t)$ is adapted to the filtration $\mathcal{F}(t)$ if for each $t\ge 0$ the random variable $\Delta(t)$ if $\mathcal{F}(t)$-measurable.</p>
+<p>There are two possibilities for the filtration $\mathcal{F}(t)$ for a Brownian motion. </p>
+<ol>
+<li>to let $\mathcal{F}(t)$ contain only the info obtained by observing the BM itself up to time $t$. </li>
+<li>to include in $\mathcal{F}(t)$ info obtained by observing the BM and one or more other processes. But if the info in $\mathcal{F}(t)$ includes observations of processes other than the BM $W$, this additional info is not allowed to give clues about the future increments because of property iii</li>
+</ol>
+<h3 id="Martingale-Property-for-Brownian-Motion"><a href="#Martingale-Property-for-Brownian-Motion" class="headerlink" title="Martingale Property for Brownian Motion"></a>Martingale Property for Brownian Motion</h3><p><strong>Theorem</strong> Brownian motion is a martingale</p>
+<h2 id="Quadratic-Variation"><a href="#Quadratic-Variation" class="headerlink" title="Quadratic Variation"></a>Quadratic Variation</h2><p>For BM, there is no natural step size. If we are given $T&gt;0$, we could simply choose a step size, say $\frac{T}{n}$ for some large $n$, and compute the quadratic variation up to time $T$ with this step size:</p>
+<p>$\sum_{j&#x3D;0}^{n-1}[W(\frac{(j+1)T}{n})-W(\frac{jT}{n})]^2$</p>
+<p>The variation of paths of BM is not zero, which makes stochastic calculus different from ordinary calculus</p>
+<h3 id="First-Order-Variation"><a href="#First-Order-Variation" class="headerlink" title="First-Order Variation"></a>First-Order Variation</h3><p>$FV_T(f)&#x3D;|f(t_1)-f(0)|+|f(t_2)-f(t_1)|+\dots+|f(T)-f(t_2)|&#x3D;\int_0^{t_1}f’(t)dt+\dots+\int_{t_2}^Tf’(t)dt&#x3D;\int_0^T|f’(t)|dt$</p>
+<p>We first choose a partition $\Pi&#x3D;{t_0,t_1,\dots,t_n}$ of $[0,T]$, which is a set of times. These will serve to determine the step size. The maximum step size of the partition will be denoted $\Vert\Pi\Vert&#x3D;\max_{j&#x3D;0,\dots,n-1}(t_{j+1}-t_j)$. We then define:</p>
+<p>$FV_T(f)&#x3D;\lim_{\Vert\Pi\Vert\to0}\sum_{j&#x3D;0}^{n-1}\vert f(t_{j+1})-f(t_j)\vert$</p>
+<p>用中值定理可以证明与积分相等</p>
+<h3 id="Quadratic-Variation-1"><a href="#Quadratic-Variation-1" class="headerlink" title="Quadratic Variation"></a>Quadratic Variation</h3><p><strong>Definition</strong> Let $f(t)$  be a function defined for $0\le t\le T$. The quadratic variation to $f$ up to time $T$ is </p>
+<p>$[f,f](T)&#x3D;\lim_{\Vert\Pi\Vert\to0}\sum_{j&#x3D;0}^{n-1}\vert f(t_{j+1})-f(t_j)\vert$</p>
+<p>if $f$ is derivative, then $<a href="T">f,f</a>&#x3D;0$</p>
+<p>if $\int_0^T\vert f’(t^*_j)\vert ^2dt$ is infinite, then $[f,f](T)$ lead to a $0\cdot\infty$ situation, which can be anything  between $0$ and $\infty$</p>
+<p><strong>Theorem</strong> Let $W$ be a Brownian motion. Then $[W,W](T)&#x3D;T$ for all $T\ge 0$ almost surely.</p>
+<p>PROOF</p>
+<p>Define the <em>sample quadratic variation</em> corresponding to the partition of $[0,T]$,  $\Pi &#x3D;{t_0,t_1,\dots,t_n}$ to be</p>
+<p> $Q_\Pi&#x3D;\sum_{j&#x3D;0}^{n-1}(W(t_{j+1})-W(t_j))^2$</p>
+<p>We can show that $Q_\Pi$ converges to $T$ as $\Vert\Pi\Vert\to0$</p>
+<p>$\mathbb{E}[(W(t_{j+1})-W(t_j))^2]&#x3D;Var[W(t_{j+1})-W(t_j)]&#x3D;t_{j+1}-t_j$ implies:</p>
+<p>$\mathbb{E}Q_\Pi&#x3D;\sum\mathbb{E}[(W(t_{j+1})-W(t_j))^2]&#x3D;\sum(t_{j+1}-t_j)&#x3D;T$</p>
+<p>$Var[(W(t_{j+1})-W(t_j))^2]&#x3D;\mathbb{E}[(W(t_{j+1})-W(t_j))^4]-2(t_{j+1}-t_j)\mathbb{E}[(W(t_{j+1})-W(t_j))^2]+(t_{j+1}-t_j)^2$</p>
+<p>$\mathbb{E}[(W(t_{j+1})-W(t_j))^4]&#x3D;3(t_{j+1}-t_j)^2$,$\mathbb{E}[(W(t_{j+1})-W(t_j))^2]&#x3D;t_{j+1}-t_j$</p>
+<p>PROOF</p>
+<p>By Ito’s formula, we have</p>
+<p>$𝑊^4(t)&#x3D;4\int^𝑡_0𝑊^3_s𝑑𝑊_s+6\int^𝑡_0𝑊^2_sds$</p>
+<p>$M(t):&#x3D;\int_0^tW_s^3dW_s&#x3D;0$ is a martingale and $\mathbb{E}M(t)&#x3D;\mathbb{E}M(0)&#x3D;0$</p>
+<p>$\mathbb{E}W^4(t)&#x3D;6\int_0^t\mathbb{E}[W_s^2]ds&#x3D;6\int_0^tsds&#x3D;3t^2$</p>
+<p>so $Var[(W(t_{j+1}-W(t_j))^4]&#x3D;2(t_{j+1}-t_j)^2$</p>
+<p>and $Var(Q_\Pi)&#x3D;\sum 2(t_{j+1}-t_j)^2\le2\Vert\Pi\Vert T$</p>
+<p>In particular,  $\lim_{\Vert\Pi\Vert\to 0}Var(Q_\Pi)&#x3D;0,lim_{\Vert\Pi\Vert\to0}Q_\Pi&#x3D;\mathbb{E}Q_\Pi&#x3D;T$</p>
+<p>$(W(t_{j+1})-W(t_j))^2\approx t_{j+1}-t_j$$(W(t_{j+1})-W(t_j))^2&#x3D;t_{j+1}-t_j$ when $t_{j+1}-t_j$ is very small</p>
+<p>$dW(t)dW(t)&#x3D;dt$ is the informal write</p>
+<p>$dWdt&#x3D;0,dtdt&#x3D;0$</p>
+<h3 id="Volatility-of-Geometric-Brownian-Motion"><a href="#Volatility-of-Geometric-Brownian-Motion" class="headerlink" title="Volatility of Geometric Brownian Motion"></a>Volatility of Geometric Brownian Motion</h3><p>geometric Brownian motion: $S(t)&#x3D;S(0)\exp{\sigma W(t)+(\alpha-\frac{1}{2}\sigma^2)t}$</p>
+<p>realized volatility: the sum of the squares of the log returns</p>
+<p>for $T_1&#x3D;t_0&lt;t_1&lt;\cdots&lt;tm&#x3D;T_2$,</p>
+<p>$\sum (\log\frac{S(t_{j+1})}{S(t_j)})^2&#x3D;\sigma^2\sum(W(t_{j+1})-W(t_j))^2+(\alpha-\frac{1}{2}\sigma^2)^2\sum(t_{j+1}-t_j)^2+2\sigma (\alpha-\frac{1}{2}\sigma^2)\sum(W(t_{j+1})-W(t_j))(t_{j+1}-t_j)$</p>
+<p>When the maximum step size $\Vert\Pi\Vert&#x3D;\max_{j&#x3D;0,1,\dots,m-1}(t_{j+1}-t_j)$ is small, then the first term is approximately equal to its limit $\sigma^2(T_2-T_1)$,hence, we have:</p>
+<p>$\frac{1}{T_2-T_1}\sum(\log\frac{S(t_{j+1})}{S(t_j)})^2\approx\sigma^2$</p>
+<h2 id="Markov-Property"><a href="#Markov-Property" class="headerlink" title="Markov Property"></a>Markov Property</h2><p><strong>Theorem</strong> Let$W(t),t\ge0$, be a Brownian motion and let $\mathcal{F}(t),t\ge0$ Be a filtration for this Brownian motion. Then $W(t)$ is a Markov process</p>
+<p>PROOF</p>
+<p>We need to show:  $\mathbb{E}[f(W(t))\vert \mathcal{F}(s)]&#x3D;g(W(s))$ $g$ Exists whenever given $0\le s\le t,f$</p>
+<p>$\mathbb{E}[f(W(t))\vert\mathcal{F}(s)]&#x3D;\mathbb{E}[f((W(t)-W(s))+W(s))\vert\mathcal{F}(s)]$</p>
+<p>$W(t)-W(s)$ is normally distributed with mean zero and variance $t-s$</p>
+<p>Replace $W(s)$ with a dummy variable $x$<br>, define $g(x)&#x3D;\mathbb{E}f(W(t)-W(s)+x)$, then </p>
+<p>$g(x)&#x3D;\frac{1}{\sqrt{2\pi(t-s)}}\int f(w+x)\exp{-\frac{w^2}{2(t-s)}}dw&#x3D;\frac{1}{\sqrt{2\pi\tau}}\int f(y)\exp{-\frac{(y-x)^2}{2\tau}}dy$</p>
+<p>Define the <em>transition density $p(\tau,x,y):&#x3D;\frac{1}{\sqrt{2\pi\tau}}e^{-\frac{(y-x)^2}{2\tau}},\tau&#x3D;t-s$</em></p>
+<p>$g(x)&#x3D;\int f(y)p(\tau,x,y)dy$ </p>
+<p>And $\mathbb{E}[f(W(t))\vert\mathcal{F}(s)]&#x3D;\int f(y)p(\tau,W(s),y)dy$</p>
+<p>Conditioned on the information in $\mathcal{F}(s)$, the conditional density of $W(t)$ is $p(\tau,W(s),y)$. This is a density in the variable $y$, normal with mean $W(s)$ and variance $\tau$. The only information from $\mathcal{F}(s)$ that is relevant is the value of $W(s)$</p>
+<h2 id="First-Passage-Time-Distribution"><a href="#First-Passage-Time-Distribution" class="headerlink" title="First Passage Time Distribution"></a>First Passage Time Distribution</h2><p>exponential martingale corresponding to $\sigma$: $Z(t)&#x3D;\exp{\sigma W(t)-\frac{1}{2}\sigma^2t}$</p>
+<p><strong>Theorem</strong> Exponential martingale  Let $W(t),t\ge 0$, be a Brownian motion with a filtration $\mathcal{F}(t),t\ge 0$, and let $\sigma$ be a constant, thew process $Z(t)$ is a martingale</p>
+<p>PROOF</p>
+<p>$\mathbb{E}[Z(t)\vert\mathcal{F}(s)]&#x3D;\mathbb{E}[\exp{\sigma W(t)-\frac{1}{2}\sigma^2t}\vert \mathcal{F}(s)]&#x3D;\mathbb{E}[\exp{\sigma (W(t)-W(s))}\cdot\exp{\sigma W(s)-\frac{1}{2}\sigma^2t}\vert \mathcal{F}(s)]&#x3D;\exp{\sigma W(s)-\frac{1}{2}\sigma^2t}\cdot\mathbb{E}[\exp{\sigma (W(t)-W(s))}]$</p>
+<p>$W(t)-W(s)$ is a normal distribution with mean zero and variance $\sigma$ so $\mathbb{E}[\exp{\sigma (W(t)-W(s))}]&#x3D;\frac{1}{2}\sigma^2(t-s)$</p>
+<p>$\mathbb{E}[Z(t)\vert\mathcal{F}(s)]&#x3D;Z(s)$</p>
+<p>Let $m$ be a real number, and define the first passage time to level $m$: $\tau_m&#x3D;\min{t\ge 0;W(t)&#x3D;m}$ if the BM never reaches the level $m$, we set $\tau_m&#x3D;\infty$. A martingale that is stopped at a stopping time is still martingale and thus must have constant expectation. So:</p>
+<p>$1&#x3D;Z(0)&#x3D;\mathbb{E}Z(t\land\tau_m)&#x3D;\mathbb{E}[\exp{\sigma W(t\land\tau_m)-\frac{1}{2}\sigma^2(t\land\tau_m)}]$ $t\land\tau_m$ means the minimum of $t$ and $\tau_m$</p>
+<p>If $\tau_m&lt;\infty$, the term $\exp{-\frac{1}{2}\sigma^2(t\land\tau_m)}$ is equal to $\exp{-\frac{1}{2}\sigma^2\tau_m}$ for large enough $t$. $\tau_m&#x3D;\infty$, the result converges to zero. So: </p>
+<p>$\lim_{t\to\infty}\exp{\sigma W(t\land\tau_m)-\frac{1}{2}\sigma^2(t\land\tau_m)}&#x3D;\mathbb{I}_\exp{\sigma m-\frac{1}{2}\sigma^2\tau_m\}$</p>
+<p>now we can obtain:</p>
+<p>$1&#x3D;\mathbb{E}[\mathbb{I}_\exp{\sigma m-\frac{1}{2}\sigma^2\tau_m}]$</p>
+<p>$\mathbb{E}[\mathbb{I}_\exp{-\frac{1}{2}\sigma^2\tau_m}]&#x3D;e^{-\sigma m}$</p>
+<p>when $\sigma\to0$, we get $\mathbb{P}{\tau_m&lt;\infty}&#x3D;1$</p>
+<p>$\tau_m$ is finite almost surely, so we may drop the indicator to obtain:</p>
+<p>$\mathbb{E}[\exp{-\frac{1}{2}\sigma^2\tau_m}]&#x3D;e^{-\sigma m}$</p>
+<p><strong>Theorem</strong> For $m\in \mathbb{R}$, the first passage time of Brownian motion to level $m$ is finite almost surely, and the Laplace transform of its distribution is given by </p>
+<p>$\mathbb{E}e^{-\alpha \tau_m}&#x3D;e^{-\vert m \vert\sqrt{2\alpha}}$  for all $\alpha&gt;0$</p>
+<p>differentiation: $\mathbb{E}[\tau_me^{-\alpha\tau_m}]&#x3D;\frac{\vert m\vert}{\sqrt{2\alpha}}e^{-\vert m\vert\sqrt{2\alpha}}$ for all $\alpha&gt;0$</p>
+<p>let $\alpha\to 0$ get obtain $\mathbb{E}\tau_m&#x3D;\infty$ so long as $m\neq0$</p>
+<h2 id="Reflection-Principle"><a href="#Reflection-Principle" class="headerlink" title="Reflection Principle"></a>Reflection Principle</h2><h3 id="Reflection-Equality"><a href="#Reflection-Equality" class="headerlink" title="Reflection Equality"></a>Reflection Equality</h3><p>for each Brownian motion path that reaches level m prior to time t but is at a level w below m at time t, there is a “reflected path” that is at level $2m-w$ at time $t$. This reflected path is constructed by switching the up and down moves of the Brownian motion from time $\tau_m$onward.</p>
+<p><strong>Reflection equality</strong></p>
+<p>$\mathbb{P}{\tau_m\le t,W(t)\le w}&#x3D;\mathbb{P}{W(t)\ge 2m-w},w\le m,m&gt;0$</p>
+<h3 id="First-Passage-Time-Distribution-1"><a href="#First-Passage-Time-Distribution-1" class="headerlink" title="First Passage Time Distribution"></a>First Passage Time Distribution</h3><p><strong>Theorem</strong> For all $m\neq0$, the random variable $\tau_m$ has cumulative distribution function:</p>
+<p>$\mathbb{P}{\tau_m\le t}&#x3D;\frac{2}{\sqrt{2\pi}}\int_{\frac{\vert m\vert}{\sqrt{t}}}^\infty e^{-\frac{y^2}{2}}dy$</p>
+<p>$f_{\tau_m}(t)&#x3D;\frac{d}{dt}\mathbb{P}&#x3D;\frac{\vert m\vert}{t\sqrt{2\pi t}}e^{-\frac{m^2}{2t}}$</p>
+<p>PROOF</p>
+<p>Use the reflection equality, we obtain</p>
+<p>$\mathbb{P}{\tau_m\le t,W(t)\le m}&#x3D;\mathbb{P}{W(t)\ge m}$</p>
+<p>if $W(t)\ge m$, then we are guaranteed that $\tau_m\le t$. </p>
+<p>$\mathbb{P}{\tau_m\le t,W(t)\ge m}&#x3D;\mathbb{P}{W(t)\ge m}$</p>
+<p>so,$\mathbb{P}{\tau_m\le t}&#x3D;2\mathbb{P}{W(t)\ge m}&#x3D;\frac{2}{\sqrt{2\pi t}}\int_{m}^\infty e^{-\frac{x^2}{2t}}dx&#x3D;\frac{2}{\sqrt{2\pi}}\int_{\frac{\vert m\vert}{\sqrt{t}}}^\infty e^{-\frac{y^2}{2}}dy$</p>
+<h3 id="Distribution-of-Brownian-Motion-and-Its-Maximum"><a href="#Distribution-of-Brownian-Motion-and-Its-Maximum" class="headerlink" title="Distribution of Brownian Motion and Its Maximum"></a>Distribution of Brownian Motion and Its Maximum</h3><p>define the <strong>maximum to date</strong> for Brownian motion</p>
+<p>$M(t)&#x3D;\max_{0\le s\le t}W(s)$</p>
+<p>Use the reflection equality, we can obtain the joint distribution of $W(t)$<br> and $M(t)$</p>
+<p><strong>Theorem</strong> For $t&gt;0$, the joint density of $(M(t),W(t))$ is</p>
+<p>$f_{M(t),W(t)}(m,w)&#x3D;\frac{2(2m-w)}{t\sqrt{2\pi t}}e^{-\frac{(2m-w)^2}{2t}}$</p>
+<p>PROOF</p>
+<p>$\mathbb{P}{M(t)\ge m,W(t)\le w}&#x3D;\int_m^\infty\int_{-\infty}^wf_{M(t),W(t)}(x,y)dydx$</p>
+<p>$\mathbb{P}{W(t)\ge 2m-w}&#x3D;\frac{1}{\sqrt{2\pi t}}\int_{2m-w}^\infty e^{-\frac{z^2}{2t}}dz$</p>
+<p>From the reflection equality, </p>
+<p>$\frac{1}{\sqrt{2\pi t}}\int_{2m-w}^\infty e^{-\frac{z^2}{2t}}dz&#x3D; \int_m^\infty\int_{-\infty}^wf_{M(t),W(t)}(x,y)dydx$</p>
+<p>Differentiate with respect to $m$</p>
+<p>$-\int_{-\infty}^wf_{M(t),W(t)}(m,y)dy&#x3D;-\frac{2}{\sqrt{2\pi t}}e^{-\frac{(2m-w)^2}{2t}}$</p>
+<p>With respect to $w$, then we obtain the distribution</p>
+<p><strong>Corollary</strong> </p>
+<p>The conditional distribution of $M(t)$ given $W(t)&#x3D;w$ is $f_{M(t)\vert W(t)}(m\vert w)&#x3D;\frac{2(2m-w)}{t}e^{-\frac{2m(m-w)}{t}}$</p>
 
     </div>
 
@@ -518,7 +682,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#General-Probability-Theory"><span class="nav-number">1.</span> <span class="nav-text">General Probability Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#infinite-probability-spaces"><span class="nav-number">1.1.</span> <span class="nav-text">infinite probability spaces</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sigma-%E4%BB%A3%E6%95%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">$\sigma$-代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E6%B5%8B%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89-probability-measure"><span class="nav-number">1.1.2.</span> <span class="nav-text">概率测量的定义 probability measure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-variables-and-distributions"><span class="nav-number">1.2.</span> <span class="nav-text">Random variables and distributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Expectations"><span class="nav-number">1.3.</span> <span class="nav-text">Expectations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-of-integrals"><span class="nav-number">1.3.1.</span> <span class="nav-text">convergence of integrals</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computation-of-Expectations"><span class="nav-number">1.4.</span> <span class="nav-text">Computation of Expectations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-of-Measure"><span class="nav-number">1.5.</span> <span class="nav-text">Change of Measure</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Information-and-Conditioning"><span class="nav-number">2.</span> <span class="nav-text">Information and Conditioning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-and-sigma-algebras"><span class="nav-number">2.1.</span> <span class="nav-text">Information and $\sigma$-algebras</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Independence"><span class="nav-number">2.2.</span> <span class="nav-text">Independence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General-Conditional-Expectations"><span class="nav-number">2.3.</span> <span class="nav-text">General Conditional Expectations</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#General-Probability-Theory"><span class="nav-number">1.</span> <span class="nav-text">General Probability Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#infinite-probability-spaces"><span class="nav-number">1.1.</span> <span class="nav-text">infinite probability spaces</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sigma-%E4%BB%A3%E6%95%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">$\sigma$-代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E6%B5%8B%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89-probability-measure"><span class="nav-number">1.1.2.</span> <span class="nav-text">概率测量的定义 probability measure</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-variables-and-distributions"><span class="nav-number">1.2.</span> <span class="nav-text">Random variables and distributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Expectations"><span class="nav-number">1.3.</span> <span class="nav-text">Expectations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-of-integrals"><span class="nav-number">1.3.1.</span> <span class="nav-text">convergence of integrals</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computation-of-Expectations"><span class="nav-number">1.4.</span> <span class="nav-text">Computation of Expectations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-of-Measure"><span class="nav-number">1.5.</span> <span class="nav-text">Change of Measure</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Information-and-Conditioning"><span class="nav-number">2.</span> <span class="nav-text">Information and Conditioning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-and-sigma-algebras"><span class="nav-number">2.1.</span> <span class="nav-text">Information and $\sigma$-algebras</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Independence"><span class="nav-number">2.2.</span> <span class="nav-text">Independence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General-Conditional-Expectations"><span class="nav-number">2.3.</span> <span class="nav-text">General Conditional Expectations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Brownian-Motion"><span class="nav-number">3.</span> <span class="nav-text">Brownian Motion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scaled-Random-Walks"><span class="nav-number">3.1.</span> <span class="nav-text">Scaled Random Walks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symmetric-Random-Walk"><span class="nav-number">3.1.1.</span> <span class="nav-text">Symmetric Random Walk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Increments-of-the-Symmetric-Random-Walk"><span class="nav-number">3.1.2.</span> <span class="nav-text">Increments of the Symmetric Random Walk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Martingale-Property-for-the-Symmetric-Random-Walk"><span class="nav-number">3.1.3.</span> <span class="nav-text">Martingale Property for the Symmetric Random Walk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quadratic-Variation-of-the-Symmetric-Random-Walk"><span class="nav-number">3.1.4.</span> <span class="nav-text">Quadratic Variation of the Symmetric Random Walk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scaled-Symmetric-Random-Walk"><span class="nav-number">3.1.5.</span> <span class="nav-text">Scaled Symmetric Random Walk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limiting-Distribution-of-the-Scaled-Random-Walk"><span class="nav-number">3.1.6.</span> <span class="nav-text">Limiting Distribution of the Scaled Random Walk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Log-Normal-Distribution-as-the-Limit-of-the-Binomial-Model"><span class="nav-number">3.1.7.</span> <span class="nav-text">Log-Normal Distribution as the Limit of the Binomial Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Brownian-Motion-1"><span class="nav-number">3.2.</span> <span class="nav-text">Brownian Motion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-of-Brownian-Motion"><span class="nav-number">3.2.1.</span> <span class="nav-text">Definition of Brownian Motion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Distribution-of-Brownian-Motion"><span class="nav-number">3.2.2.</span> <span class="nav-text">Distribution of Brownian Motion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filtration-for-Brownian-Motion"><span class="nav-number">3.2.3.</span> <span class="nav-text">Filtration for Brownian Motion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Martingale-Property-for-Brownian-Motion"><span class="nav-number">3.2.4.</span> <span class="nav-text">Martingale Property for Brownian Motion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quadratic-Variation"><span class="nav-number">3.3.</span> <span class="nav-text">Quadratic Variation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#First-Order-Variation"><span class="nav-number">3.3.1.</span> <span class="nav-text">First-Order Variation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quadratic-Variation-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">Quadratic Variation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Volatility-of-Geometric-Brownian-Motion"><span class="nav-number">3.3.3.</span> <span class="nav-text">Volatility of Geometric Brownian Motion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markov-Property"><span class="nav-number">3.4.</span> <span class="nav-text">Markov Property</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Passage-Time-Distribution"><span class="nav-number">3.5.</span> <span class="nav-text">First Passage Time Distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflection-Principle"><span class="nav-number">3.6.</span> <span class="nav-text">Reflection Principle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflection-Equality"><span class="nav-number">3.6.1.</span> <span class="nav-text">Reflection Equality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#First-Passage-Time-Distribution-1"><span class="nav-number">3.6.2.</span> <span class="nav-text">First Passage Time Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Distribution-of-Brownian-Motion-and-Its-Maximum"><span class="nav-number">3.6.3.</span> <span class="nav-text">Distribution of Brownian Motion and Its Maximum</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
