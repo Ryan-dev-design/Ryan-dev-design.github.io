@@ -1,6 +1,6 @@
 ---
 layout: posts
-title: Managing cash-in risk embedded in Portfolio Insurance strategies
+title: OLS 
 date: 2022-04-18
 categories: 学习笔记
 tags: [经济,]
