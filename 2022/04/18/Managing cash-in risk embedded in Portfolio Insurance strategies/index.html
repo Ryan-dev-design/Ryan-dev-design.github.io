@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="MathJax.Hub.Config({             tex2jax: {             skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;],             inlineMath: [[&#39;$&#39;,&#39;$&#39;]]             }         });">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Managing cash-in risk embedded in Portfolio Insurance strategies">
+<meta property="og:url" content="http://example.com/2022/04/18/Managing%20cash-in%20risk%20embedded%20in%20Portfolio%20Insurance%20strategies/index.html">
+<meta property="og:site_name" content="QUANTNOTE">
+<meta property="og:description" content="MathJax.Hub.Config({             tex2jax: {             skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;],             inlineMath: [[&#39;$&#39;,&#39;$&#39;]]             }         });">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-18T08:40:57.193Z">
+<meta property="article:author" content="Ryan Liu">
+<meta property="article:tag" content="金融">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/04/18/Managing%20cash-in%20risk%20embedded%20in%20Portfolio%20Insurance%20strategies/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Managing cash-in risk embedded in Portfolio Insurance strategies | QUANTNOTE</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">QUANTNOTE</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/18/Managing%20cash-in%20risk%20embedded%20in%20Portfolio%20Insurance%20strategies/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ryan Liu">
+      <meta itemprop="description" content="一个咸鱼的笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QUANTNOTE">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Managing cash-in risk embedded in Portfolio Insurance strategies
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-18 00:00:00 / 修改时间：16:40:57" itemprop="dateCreated datePublished" datetime="2022-04-18T00:00:00+08:00">2022-04-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+# Managing cash-in risk embedded in Portfolio
+Insurance strategies: a review
+
+<p>the presence of an insurance could have convinced the investors to not leave the market, and <strong>take risk</strong></p>
+<p>Perold and Sharpe: 3 different insurance strategies: option-based \ option-duplicating \ derivative independent </p>
+<p>option-based: buy zero-coupon bond maturity equals investment time horizon + risky option</p>
+<p>option-duplicating: replicate option with a self-financing strategy (overcome the lack of liquidity)</p>
+<p>low interest rate level reduce the available risk budgets. both a sustainable equity &amp; capital protection? <strong>dynamically allocating both in risky and riskless assets</strong> mostly used—CPPI</p>
+<p><strong>the problem of CPPI:</strong></p>
+<p>after a severe market draw-down, the risk budget <strong>erases</strong> — cash-in risk</p>
+<ol>
+<li>the remaining portfolio value shifted into the riskless asset, might not guarantee</li>
+<li>subsequent rises of the risky asset</li>
+</ol>
+<h1 id="OBPI"><a href="#OBPI" class="headerlink" title="OBPI"></a>OBPI</h1><p>key: ensuring a minimal terminal portfolio value</p>
+<p>$V_t^{OBPI}&#x3D;qB_t+pC(t,S_t,K)$</p>
+<p>the strategy is static, no trading occurs in $(0,T)$</p>
+<p>if the option whose strike price equal to the wealth to be immunized are not traded on the market, investors must replicate the option using hedge strategies. But the incompleteness…</p>
+<h1 id="CPPI"><a href="#CPPI" class="headerlink" title="CPPI"></a>CPPI</h1><p>the value of the portfolio at maturity $V_T^{CPPI}$ is higher than a guaranteed amount $G$ a proportion (PL) of the initially invested amount $V_0^{CPPI}$</p>
+<p>floor $F_t&#x3D;F_T(1+r)^{-(T-t)},F_T&#x3D;G$</p>
+<p><em>cushion $C_t$</em>, the difference between $V_t$ and $F_t$. exposure to risky asset $E_t&#x3D;m\times C_t$， $m$  is the multiplier. the strategy is self-financed, so the rest of the portfolio $V_t-E_t$ is invested into risk-free asset.</p>
+<p>to avoid excessive equity exposure, $E_t$ is bounded to be at most $LEV\cdot V_t^{CPPI}$</p>
+<p>the proportion of wealth invested to the risky asset:</p>
+<p>$$<br>\alpha_t^{CPPI}&#x3D;\min{\frac{m(V_t^{CPPI}-F_t)}{V_t^{CPPI}},LEV}\\beta_t&#x3D;1-\alpha_t<br>$$</p>
+<h2 id="CPPI-with-continuous-rebalancing"><a href="#CPPI-with-continuous-rebalancing" class="headerlink" title="CPPI with continuous rebalancing"></a>CPPI with continuous rebalancing</h2><p>floor process $F&#x3D;{F_t}_{t\in[0,T]}$, the dynamic is $dF_t&#x3D;rF_tdt,F_0&#x3D;G\cdot e^{-rT}$, $W_t$ is a standard Brownian motion in real world measure $\mathbb{P}$</p>
+<p>$$<br>dV_t&#x3D;mC_t\frac{dS_t}{S_t}+(V_t-mC_t)rdt\dS_t&#x3D;r S_tdt+\sigma S_tdW_t^\mathbb{P}\\frac{dC_t}{C_t}&#x3D;((1-m)r+\mu m)dt+m\sigma dW_t^\mathbb{P}\C_t&#x3D;C_0\exp(rt+m(\mu-r)t+m\sigma W_t^\mathbb{P}-\frac{m^2\sigma^2t}{2})\&#x3D;C_0\exp(r(1-m)t+\frac{m(1-m)\sigma^2t}{2})(\frac{S_t}{S_0})^m\V_0&#x3D;C_0+F_0\to C_0&#x3D;G&#x2F;PL-Ge^{-rT}\V_T&#x3D;C_T+G&#x3D;G+\frac{G}{PL}(1-PLe^{-rT})\exp((rT+\frac{m\sigma^2T}{2})(1-m))(\frac{S_T}{S_0})^m<br>$$</p>
+<p>the CPPI strategy is equivalent to taking a long position in a zero-coupon bond with nominal $G$ to guarantee the capital at maturity and investing the remaining sum into a risky asset which has $m$ times the excess return and $m$ times the volatility of $S$ and is perfectly correlated with $S$.</p>
+<p>there is non zero probability that during a sudden downside movement of the underlying asset, the fund manager will have no time to readjust the portfolio. then it goes crashing through the floor.</p>
+<h2 id="CPPI-with-discrete-time-rebalancing"><a href="#CPPI-with-discrete-time-rebalancing" class="headerlink" title="CPPI with discrete time rebalancing"></a>CPPI with discrete time rebalancing</h2><p>discrete time CPPI:</p>
+<p>$$<br>\tau&#x3D;{t_0&#x3D;0&lt;t_1&lt;\cdots&lt;t_{n-1}&#x3D;T}\C_{t_{k+1}}^\tau&#x3D;C_{t_0}^\tau\prod_{i&#x3D;1}^{min(\nu,k+1)}(m\frac{S_{t_i}}{S_{t_{i-1}}}-(m-1))\\nu:&#x3D;min(t_k\in\tau\vert V_{t_K}^\tau-G),\infty \text{if not attained}\\phi_t^{(S),\tau}:&#x3D;max(\frac{mC_{t_k}^\tau}{S_{t_k}},0)<br>$$</p>
+<p>local shortfall probability</p>
+<p>shortfall probability</p>
+<p>expected shortfall</p>
+<p>how to ensure the effectiveness of CPPI strategy?</p>
+<ol>
+<li>given an estimate for $\mu$ and $\sigma$, determine the value of multiplier and the number of rebalances $n$ to let the probability of falling below the guarantee above a confidence level</li>
+<li>base on large deviations methods, estimate the possible losses between two consecutive trading dates</li>
+</ol>
+<h2 id="CPPI-in-presence-of-jump-in-asset-price"><a href="#CPPI-in-presence-of-jump-in-asset-price" class="headerlink" title="CPPI in presence of jump in asset price"></a>CPPI in presence of jump in asset price</h2><p>no relax on continuous trading assumptions, we introduce jumps in the risky asset</p>
+<p>the cash-in risk cannot be attributed exclusively to trading restriction</p>
+<p>$$<br>dB_t&#x3D;rB_tdt,B_0&#x3D;b\dS_t&#x3D;S_{t-}dZ_t<br>$$</p>
+<p>$Z$ is a possible discontinuous driving process, modeled as semi-martingale, to ensure the positivity of the price, we assume that $\Delta Z_t&gt;-1$, and $\nu&#x3D;\inf(t\ge 0,V_t\le F_t)$, when $t&lt;\nu$:</p>
+<p>$$<br>dV_t&#x3D;m(V_{t-}-F_t)\frac{dS_t-}{S_{t-}}+(V_{t-}-m(V_{t-}-F_t))\frac{dB_t}{B_t}\\frac{dC_t}{C_t-}&#x3D;mdZ_t+(1-m)rdt<br>$$</p>
+<p>introduce the discounted cushion $C_t^*&#x3D;C_t&#x2F;B_t$</p>
+<p>$$<br>\frac{dC_t^*}{C_{t-}^*}&#x3D;m(dZ_t-rdt)&#x3D;mdL_t,L_t&#x3D;L_0+\int_0^tdZ_s-rds\C_t^*&#x3D;C_0\mathcal{E}(mL)_t<br>$$</p>
+<p>at time $\nu$, all the portfolio is invested into risk-free asset and when $t\ge \nu$, the value of $C_t^*$ remains constant. Define $\tilde{C}<em>t&#x3D;C</em>{t\wedge\nu}^*&#x3D;C_0^*\mathcal{E}(mL)_{t\wedge \nu}$</p>
+<p>it can become negative in presence of negative jumps of sufficient size of stock price.</p>
+<h1 id="Some-extensions-of-CPPI-allocation-strategy"><a href="#Some-extensions-of-CPPI-allocation-strategy" class="headerlink" title="Some extensions of CPPI allocation strategy"></a>Some extensions of CPPI allocation strategy</h1><h2 id="Time-Invariant-Portfolio-Protection-TIPP"><a href="#Time-Invariant-Portfolio-Protection-TIPP" class="headerlink" title="Time-Invariant Portfolio Protection (TIPP)"></a>Time-Invariant Portfolio Protection (TIPP)</h2><p>modifies the floor:</p>
+<p>$$<br>\tilde{F}<em>t&#x3D;max(F_t,PL\cdot \sup</em>{s\le t} V_s)<br>$$</p>
+<p>$PL$ is the protection level. the floor will jump up with the portfolio value in  order to reduce the risky asset allocation when the market peaks</p>
+<p>the growth rate of the TIPP floor can be considered comparable to the portfolio in each instant of time</p>
+<p>less exposure to the risky asset, change more smoothly over time, the overall return will be generally lower</p>
+<h2 id="Variable-Proportion-Portfolio-Insurance-VPPI"><a href="#Variable-Proportion-Portfolio-Insurance-VPPI" class="headerlink" title="Variable Proportion Portfolio Insurance (VPPI)"></a>Variable Proportion Portfolio Insurance (VPPI)</h2><p>make the multiplier dynamic</p>
+<p>EPPI: the multiplier changes like this:</p>
+<p>at $t&#x3D;0$ the investor fix a reference price for the risky asset rebalancing $S^{(0)}$,</p>
+<p>$$<br>m_t&#x3D;\eta+\exp(aln(\frac{S^{(1)}}{S^{(0)}}))<br>$$</p>
+<p>$\eta&gt;1$ is an arbitrary constant, and the rest is the dynamic multiple adjustment factor (DMAF)</p>
+<p>when the stock price goes up, the mechanism of the EPPI strategy creates more number of holding shares to perform an upside capture</p>
+<p>ﬁx the multiplier at each rebalancing date by considering a local quantile guarantee condition posed by $\mathbb{P}<em>{t_k}(C</em>{t_{K+1}}&gt;0\vert C_{t_k}&gt;0)&#x3D;\\mathbb{P}<em>{t_k}(m</em>{t_k}\frac{S_{t_{k+1}}}{S_{t_k}}-(m_{t_k}-1)&gt;0)\ge 1-\epsilon$</p>
+<p>it implies an upper bound $\bar{m}_{t_k}$, the precise number is determined by the distribution</p>
+<h1 id="Hedging-gap-risk-embedded-through-options"><a href="#Hedging-gap-risk-embedded-through-options" class="headerlink" title="Hedging gap risk embedded through options"></a>Hedging gap risk embedded through options</h1><p>another way to hedge gap risk embedded in portfolio insurance strategies is to use <strong>options</strong></p>
+<p>take a long position on an at-the-money put option on the CPPI portfolio with a strike price at least equal to the minimum value that the investor requires at maturity</p>
+<p>or take a long position on an at-the-money call option on the CPPI portfolio</p>
+<p>key: model option on CPPI</p>
+<h2 id="Modeling-option-on-CPPI"><a href="#Modeling-option-on-CPPI" class="headerlink" title="Modeling option on CPPI"></a>Modeling option on CPPI</h2><p>the discrete time process describing the evolution of the risky asset under the risk neutral probability measure $\mathbb{Q}$ is:</p>
+<p>$$<br>\frac{S<br><em>{t_k}}{S</em>{t_{k+1}}}&#x3D;\exp((r-\frac{\sigma}{2})\Delta t+\sigma W_{t_k})<br>$$</p>
+<p>$W_{t_k}\sim N(0,\Delta t),\Delta t&#x3D;\frac{T}{n},\tau&#x3D;{t_0&#x3D;0&lt;t_1&lt;\cdots&lt;t_{N-1}&lt;t_N&#x3D;T}$</p>
+<p>the value of the CPPI portfolio is </p>
+<p>$$<br>V_{t_{k+1}}^\tau&#x3D;e^{r(t_{k+1}-min{\nu,k+1})}((V_0-F_0)\prod_{i&#x3D;1}^{min{\nu,k+1}}(m\frac{S_{t_i}}{S_{t_{i-1}}}-(m-1)e^{r\Delta t})+F_{t_{min{\nu,k+1}}})<br>$$</p>
+<p>in this framework, we consider the interest rate between the adjustments</p>
+<p>self-financed, so the expected the portfolio terminal value under the risk neutral probability measure is $e^{rT}V_0$. the CPPI is sold as a product with a capital guarantee, so for the investors the value of the CPPI is not equal to $V_0$</p>
+<p>the payoff at maturity of the discrete CPPI is $CPPI_T&#x3D;max{V_T,F_T}$</p>
+<p>the expected value of the portfolio at maturity is composed of two parts:</p>
+<p>$$<br>\mathbb{E}^Q[CPPI]&#x3D;\mathbb{E}^Q[CPPI_T\vert C_1]+\mathbb{E}^Q[CPPI_T\vert C_2]<br>$$</p>
+<p>$C_1$ means the portfolio at maturity does not fall below the floor over $[0,T]$</p>
+<ol>
+<li>when the strike price $K$ is equal to the value of the guarantee at maturity $F_T$, the option ends up in the money if $C_{t_{k+1}}^\tau&gt;0$, then a portfolio composed by the option on a CPPI with $K&#x3D;F_T$ and a zero coupon bond with nominal value $K$ is <strong>exactly equal</strong> to a CPPI with floor $F$</li>
+<li>when the strike price is higher than the guarantee amount at maturity $K\ge F_T$, the option ends up in the money if the CPPI has not fallen below the floor, and if the value is greater than the strike price $K$.</li>
+</ol>
+<h2 id="Structured-product-written-on-GMEE-CPPI"><a href="#Structured-product-written-on-GMEE-CPPI" class="headerlink" title="Structured product written on GMEE-CPPI"></a>Structured product written on GMEE-CPPI</h2><p>the options linked to portfolio insurance strategies can be a suitable way to obtain a downside protection, by it is unable to offer an equity market participation in the event that after draw down, the risky asset recover nicely.</p>
+<p>define a minimum threshold which is always invested in the risky asset — <em>guaranteed minimum equity exposure</em> (GMEE-CPPI)</p>
+<p>GMEE $\alpha_{min}$ </p>
+<p>$$<br>\alpha_t:&#x3D;max{min{\frac{m(V_t^{CPPI}-F_t)}{V_t^{CPPI}},L},\alpha_{min}}<br>$$</p>
+<p>the equity participation will never go below $\alpha_{min}$, but it means the CPPI allocation implemented in a real portfolio might not be able to protect the invested capital</p>
+<p>combination of CPPI and OBPI:</p>
+<ol>
+<li>a proportion of the initial portfolio value invested in time-congruent zero-coupon bond following the OBPI</li>
+<li>the remaining part of the portfolio put into an exotic call option linked to a GMEE-CPPI where the CPPI  has an equity index as risky asset</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%87%91%E8%9E%8D/" rel="tag"># 金融</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/25/Stochastic%20Calculus/" rel="prev" title="Stochastic Calculus for Finance">
+      <i class="fa fa-chevron-left"></i> Stochastic Calculus for Finance
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/18/OLS%20method/" rel="next" title="Managing cash-in risk embedded in Portfolio Insurance strategies">
+      Managing cash-in risk embedded in Portfolio Insurance strategies <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OBPI"><span class="nav-number">1.</span> <span class="nav-text">OBPI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPPI"><span class="nav-number">2.</span> <span class="nav-text">CPPI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CPPI-with-continuous-rebalancing"><span class="nav-number">2.1.</span> <span class="nav-text">CPPI with continuous rebalancing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPPI-with-discrete-time-rebalancing"><span class="nav-number">2.2.</span> <span class="nav-text">CPPI with discrete time rebalancing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPPI-in-presence-of-jump-in-asset-price"><span class="nav-number">2.3.</span> <span class="nav-text">CPPI in presence of jump in asset price</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Some-extensions-of-CPPI-allocation-strategy"><span class="nav-number">3.</span> <span class="nav-text">Some extensions of CPPI allocation strategy</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Time-Invariant-Portfolio-Protection-TIPP"><span class="nav-number">3.1.</span> <span class="nav-text">Time-Invariant Portfolio Protection (TIPP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variable-Proportion-Portfolio-Insurance-VPPI"><span class="nav-number">3.2.</span> <span class="nav-text">Variable Proportion Portfolio Insurance (VPPI)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hedging-gap-risk-embedded-through-options"><span class="nav-number">4.</span> <span class="nav-text">Hedging gap risk embedded through options</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling-option-on-CPPI"><span class="nav-number">4.1.</span> <span class="nav-text">Modeling option on CPPI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structured-product-written-on-GMEE-CPPI"><span class="nav-number">4.2.</span> <span class="nav-text">Structured product written on GMEE-CPPI</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ryan Liu</p>
+  <div class="site-description" itemprop="description">一个咸鱼的笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:ruoyanlau@outlook.com" title="E-Mail → mailto:ruoyanlau@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/ye-yu-ling-ling-88" title="Hu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ye-yu-ling-ling-88" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Hu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/baixu-liu-ryan" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;baixu-liu-ryan" rel="noopener" target="_blank"><i class="fab fa-linkedin-in fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan Liu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
