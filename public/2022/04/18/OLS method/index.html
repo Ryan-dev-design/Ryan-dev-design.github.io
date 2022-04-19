@@ -28,7 +28,7 @@
 <meta property="og:description" content="MathJax.Hub.Config({             tex2jax: {             skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;],             inlineMath: [[&#39;$&#39;,&#39;$&#39;]]             }         });">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-18T08:54:48.205Z">
+<meta property="article:modified_time" content="2022-04-19T03:24:18.338Z">
 <meta property="article:author" content="Ryan Liu">
 <meta property="article:tag" content="经济">
 <meta name="twitter:card" content="summary">
@@ -183,10 +183,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-04-18 00:00:00 / 修改时间：16:54:48" itemprop="dateCreated datePublished" datetime="2022-04-18T00:00:00+08:00">2022-04-18</time>
+              <time title="创建时间：2022-04-18 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-18T00:00:00+08:00">2022-04-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-19 11:24:18" itemprop="dateModified" datetime="2022-04-19T11:24:18+08:00">2022-04-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -219,6 +225,225 @@
         });
     </script>
 </head>
+
+<h1 id="简单回归模型"><a href="#简单回归模型" class="headerlink" title="简单回归模型"></a>简单回归模型</h1><p>$y&#x3D;\beta_0+\beta_1 x+u$</p>
+<p>$x$ 和$u$ 的相关性？</p>
+<p>关键假定是，$u$ 的平均值与$x$ 无关，即$\mathbb{E}[u\vert x]&#x3D;\mathbb{E}u$，称之为<strong>均值独立</strong></p>
+<p>$\mathbb{E}[u\vert x]&#x3D;\mathbb{E}u&#x3D;0$ 称之为零条件均值假定，等于$0$定义了截距</p>
+<p>$\mathbb{E}[y\vert x]&#x3D;\beta_0+\beta_1x$ 总体回归函数</p>
+<h2 id="普通最小二乘法的推导"><a href="#普通最小二乘法的推导" class="headerlink" title="普通最小二乘法的推导"></a>普通最小二乘法的推导</h2><p>$$<br>\mathbb{E}[y-\beta_1x-\beta_0]&#x3D;0\\\mathbb{E}[x(y-\beta_1x-\beta_0)]&#x3D;0<br>$$</p>
+<p>利用零条件均值假定，以及矩估计，或者使残差平方和最小，即可获得OLS一阶条件</p>
+<p>$$<br>\begin{align*}\sum y_i-\hat{\beta_0}-\hat{\beta_1}x_i&#x3D;0\\\sum x_i(y_i-\hat{\beta_0}-\hat{\beta_1}x_i)&#x3D;0\end{align*}<br>$$</p>
+<p>OLS回归线&#x2F;样本回归函数：$\hat{y}&#x3D;\hat{\beta_0}+\hat{\beta_1}x$，是总体回归函数的一个样本估计，总体回归函数始终是未知的。</p>
+<h2 id="统计量的性质"><a href="#统计量的性质" class="headerlink" title="统计量的性质"></a>统计量的性质</h2><p>$\sum \hat{u}_i&#x3D;0$, $\sum x_i\hat{u}_i&#x3D;0$ 这其实就是一阶条件</p>
+<p>定义：</p>
+<p>总平方和SST，解释平方和SSE，残差平方和SSR</p>
+<p>$SST&#x3D;\sum(y_i-\bar{y})^2$</p>
+<p>$SSE&#x3D;\sum (\hat{y}_i-\bar{y})^2$</p>
+<p>$SSR&#x3D;\sum \hat{u}_i^2$</p>
+<p>SST&#x3D;SSE+SSR</p>
+<p>拟合优度$R^2&#x3D;SSE&#x2F;SST$，是可解释的波动与总波动之比</p>
+<h2 id="OLS估计量的期望和方差"><a href="#OLS估计量的期望和方差" class="headerlink" title="OLS估计量的期望和方差"></a>OLS估计量的期望和方差</h2><h3 id="OLS的无偏性"><a href="#OLS的无偏性" class="headerlink" title="OLS的无偏性"></a>OLS的无偏性</h3><p><strong>SLR.1</strong> 线性与参数</p>
+<p><strong>SLR.2</strong> 随机抽样，实践过程中，并不是所有横截面样本都可以看成是随机抽样的结果</p>
+<p>$y_i&#x3D;\beta_0+\beta_1x_i+u_i$，其中$u_i$是第$i$ 次观测的误差或干扰，与残差不同 </p>
+<p><strong>SLR.3</strong> 解释变量的样本有波动</p>
+<p>$x$ 的样本结果不是完全相同的数值</p>
+<p><strong>SLR.4</strong> 零条件均值</p>
+<p><strong>下面证明OLS的无偏性</strong></p>
+<p>$\hat{\beta}_1&#x3D;\frac{\sum(x_i-\bar{x})y_i}{\sum(x_i-\bar{x})^2}&#x3D;\frac{\sum(x_i-\bar{x})y_i}{SST_x}&#x3D;\frac{\sum(x_i-\bar{x})(\beta_0+\beta_1x_i+u_i)}{SST_x}&#x3D;\beta_1+\frac{\sum d_iu_i}{SST_x}$，其中$d_i&#x3D;x_i-\bar{x}$</p>
+<p>因此，$\mathbb{E}\hat{\beta}_1&#x3D;\beta_1,\mathbb{E}\hat{\beta}_0&#x3D;\beta_0$</p>
+<p>无偏性是抽样分布的性质，并不能确定从特定样本中得到的估计值</p>
+<p>时序分析中将会放松SLR.2</p>
+<p><strong>SLR.5</strong> 同方差性</p>
+<p>$Var(u\vert x)&#x3D;\sigma^2$</p>
+<p>$\sigma^2&#x3D;\mathbb{E}[u^2\vert x]$，即$\sigma^2$是$u$的无条件方差，也经常被成为误差方差或干扰方差</p>
+<p>若$Var(u\vert x)$取决于$x$，则误差项表现出异方差性</p>
+<p><strong>定理 OLS估计量的抽样方差</strong></p>
+<p>在SLR.1-SLR.5条件下，对于样本值：</p>
+<p>$Var(\hat{\beta}_1)&#x3D;\frac{\sigma^2}{SST_x}$</p>
+<p>$Var(\hat{\beta}_0)&#x3D;\frac{\sigma^2\bar{x}}{SST_x}$</p>
+<p>从$\hat{\beta}_1&#x3D;\beta_1+\frac{\sum d_iu_i}{SST_x}$出发，$Var(\hat{\beta}_1)&#x3D;\frac{\sum d_i^2\sigma^2}{SST_x^2}&#x3D;\sigma^2&#x2F;SST_x$</p>
+<p>一个小结论：</p>
+<p>$\sum x_i^2\ge\sum(x_i-\bar{x})^2$</p>
+<p><strong>误差方差的估计</strong></p>
+<p>$\hat{u}_i&#x3D;u_i-(\hat{\beta}_0-\beta_0)-(\hat{\beta}_1-\beta_1)x_i$</p>
+<p>$\sigma^2$的一个无偏“估计量”是$\sum u_i^2&#x2F;n$ 但$u_i$不可观测</p>
+<p>OLS有两个约束条件，因此：</p>
+<p>$\hat{\sigma}^2&#x3D;SSR&#x2F;(n-2)$ 是一个无偏估计，有时记为$s^2$</p>
+<p>$$<br>0&#x3D;\bar{u}-(\hat{\beta}_0-\beta_0)-(\hat{\beta}_1-\beta_1)\bar{x}\\\sum\hat{u}_i^2&#x3D;\sum(u_i-（\hat{\beta}_0-\beta_0)-(\hat{\beta}_1-\beta_1)x_i)^2\\&#x3D;\sum(u_i-\bar{u}-(\hat{\beta}_1-\beta_1)(x_i-\bar{x}))^2<br>$$</p>
+<p>$sd(\hat{\beta}_1)&#x3D;\sigma&#x2F;\sqrt{SST}$它的一个比较自然的估计量就是$se(\hat{\beta}_1)&#x3D;\hat{\sigma}&#x2F;\sqrt{SST}$，被称之为标准误(standard error)</p>
+<h1 id="多元回归分析：估计"><a href="#多元回归分析：估计" class="headerlink" title="多元回归分析：估计"></a>多元回归分析：估计</h1><h2 id="如何得到OLS估计值"><a href="#如何得到OLS估计值" class="headerlink" title="如何得到OLS估计值"></a>如何得到OLS估计值</h2><p>一阶条件：</p>
+<p>$$<br>\sum(y_i-\hat{\beta}_0-\hat{\beta}_1x_{i1}-\cdots)&#x3D;0\\\sum x_{i1}(y_i-\hat{\beta}_0-\hat{\beta}_1x_{i1}-\cdots)&#x3D;0\\\vdots\\\sum x_{ik}(y_i-\hat{\beta}_0-\hat{\beta}_1x_{i1}-\cdots)&#x3D;0<br>$$</p>
+<p>回归线或样本回归函数由截距估计值与斜率估计值组成</p>
+<p>估计值$\hat{\beta}_i$具有偏效应，因此多元回归使我们在对自变量的值不加限制的时候有效模拟施加限制的情况</p>
+<h2 id="拟合值和残差的重要性质"><a href="#拟合值和残差的重要性质" class="headerlink" title="拟合值和残差的重要性质"></a>拟合值和残差的重要性质</h2><ol>
+<li>残差样本平均值为零</li>
+<li>OLS拟合值和OLS残差之间的样本协方差为零</li>
+<li>样本平均在回归线上</li>
+</ol>
+<p>考虑$\hat{y}&#x3D;\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2$，$\hat{\beta}_1$的一种表达形式是：$\hat{\beta}_1&#x3D;\frac{\sum\hat{r}_{i1}y_i}{\sum\hat{r}_{i1}^2}$</p>
+<p>其中$\hat{r}_{i1} $是$x_1$对$x_2$的回归得到的OLS残差，即$x_{i1}$与$x_{i2}$中不相关的部分，所以$\hat{\beta}_1$就是排除了$x_2$影响后$y$与$x_1$之间的关系</p>
+<h3 id="简单回归与多元回归"><a href="#简单回归与多元回归" class="headerlink" title="简单回归与多元回归"></a>简单回归与多元回归</h3><p>$\tilde{y}&#x3D;\tilde{\beta}_0+\tilde{\beta}_1x_1$和$\hat{y}&#x3D;\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2$的结果会有什么关系？</p>
+<p>令$\bar{\delta}$是$x_2$对$x_1$的简单回归斜率，则$\tilde{\beta}_1&#x3D;\hat{\beta}_1+\hat{\beta}_2\bar{\delta}$</p>
+<p><strong>拟合优度相关的内容和简单线性回归一致</strong></p>
+<p>增加一个自变量之后$R^2$不会减小，而且通常会增大</p>
+<h2 id="OLS估计量的期望"><a href="#OLS估计量的期望" class="headerlink" title="OLS估计量的期望"></a>OLS估计量的期望</h2><p><strong>MLR.1</strong> 线性于参数</p>
+<p><strong>MLR.2</strong> 随机抽样</p>
+<p><strong>MLR.3</strong> 不存在完全共线性</p>
+<p><strong>MLR.4</strong> 条件均值为零</p>
+<p>当MLR.4成立时，我们说具有外生解释变量，如果$x_j$与$u$相关，那么$x_j$称之为内生解释变量</p>
+<p>限制了无法观测的因素与解释变量之间的关系</p>
+<p>在MLR1-4条件下，可以证明OLS的无偏性$\mathbb{E}\hat{\beta}_i&#x3D;\beta_i$</p>
+<p>包含无关变量一般不会对OLS的无偏性产生影响，但是会对方差产生不利影响</p>
+<p><strong>遗漏变量偏误</strong></p>
+<p>总体模型：$y&#x3D;\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+u$</p>
+<p>遗漏变量后的估计模型：$\tilde{y}&#x3D;\tilde{\beta}_0+\tilde{\beta}_1x_1+\tilde{\beta}_2x_2$</p>
+<p><strong>假设$x_2$和$x_3$无关，$x_1$和$x_3$相关</strong></p>
+<p>$$<br>\mathbb{E}\tilde{\beta}_1&#x3D;\beta_1+\beta_3\frac{\sum x_{i3}(x_{i1}-\bar{x}_1)}{\sum (x_{i1}-\bar{x}_1)^2}<br>$$</p>
+<p><strong>MLR.5</strong> 同方差性 $Var[u\vert x_1,x_2,\dots,x_k]&#x3D;\sigma^2$</p>
+<p>即以解释变量为条件，不管解释变量出现怎样的组合，误差项的方差都是一样的。如果不成立称之为异方差性</p>
+<p>MLR1-5称之为横截面回归的<strong>高斯-马尔可夫</strong>假定</p>
+<p>$Var\hat{\beta}_i&#x3D;\frac{\sigma^2}{SST_j(1-R_j^2)}$，其中$R_j$来自于$x_j$对其他变量回归得到的$R^2$，需要MLR.5的的成立</p>
+<p>两个或多个自变量之间高度但不完全相关称之为<strong>多重共线性</strong>，即$R_j^2$接近于1，但这并不违反MLR.3，最终的问题还是要看$\hat{\beta}_j$与自身的标准差的大小关系</p>
+<p>很小的$SST_j$也可以导致大方差，即小样本容量会导致很大的抽样方差</p>
+<p>如果存在相关性的自变量和我们关注的自变量没有高度相关，其实没有直接影响，就不必关心这种共线性</p>
+<p>误设模型中的方差</p>
+<p>$Var\hat{\beta}_i&#x3D;\frac{\sigma^2}{SST_j(1-R_j^2)}$，和$Var\tilde{\beta}_i&#x3D;\frac{\sigma^2}{SST_j}$</p>
+<p>若$\beta_2\neq0$，则简单模型给出方差更小的有偏估计；若$\beta_2&#x3D;0$，则简单模型给出方差更小的无偏估计。</p>
+<p>直觉上讲，如果$x_2$对$y$没有偏效应，在回归中加入$x_2$只会加剧多重共线性。如果$\beta_2\neq0$，则偏误不会随着样本容量扩大而减小，但是Var会随着样本容量增大而趋于零，因此增加自变量导致的多重共线性就会变得没那么重要，大样本情况下倾向使用更复杂的模型</p>
+<h3 id="OLS估计的标准误"><a href="#OLS估计的标准误" class="headerlink" title="OLS估计的标准误"></a>OLS估计的标准误</h3><p>$$<br>\hat{\sigma}^2&#x3D;\frac{\sum u_i^2}{n-k-1}&#x3D;\frac{SSR}{n-k-1}<br>$$</p>
+<p>自由度$df&#x3D;n-k-1$</p>
+<p>可以证明，$\mathbb{E}\hat{\sigma}^2&#x3D;\sigma^2$</p>
+<p>$\hat{\sigma}&#x3D;\sqrt{\hat{\sigma}^2}$称之为回归标准误SER，是误差项的标准差的估计量，还被称之为估计值标准误和均方误差</p>
+<p>$se(\hat{\beta}_i)&#x3D;\frac{\hat{\sigma}^2}{\sqrt{SST_j(1-R_j)^2}}$</p>
+<p>异方差性质不会导致参数估计偏误，但是会导致$Var(\hat{\beta}_j)$出现问题，导致标准误无效</p>
+<h2 id="OLS的有效性"><a href="#OLS的有效性" class="headerlink" title="OLS的有效性"></a>OLS的有效性</h2><p>在MLR1-5的假定下，OKS估计量是最优线性无偏估计量BLUE，即具有最小的方差。尤其是MLR.5，保证了OLS在线性无偏估计量中具有最小的方差</p>
+<h1 id="多元回归分析：推断"><a href="#多元回归分析：推断" class="headerlink" title="多元回归分析：推断"></a>多元回归分析：推断</h1><h2 id="OLS估计量的抽样分布"><a href="#OLS估计量的抽样分布" class="headerlink" title="OLS估计量的抽样分布"></a>OLS估计量的抽样分布</h2><p><strong>MLR.6</strong> 正态性 总体误差$u$独立于解释变量，并且服从均值为零，方差为$\sigma^2$的正态分布</p>
+<p>MLR1-6整治违经典线性模型（CLM）假定。在CLM下，OLS是最小方差的无偏估计，不必限制在线性估计中</p>
+<p>由千于$u$ 是影响着 $y$ 而又观测不到的许多因素之和，所以我们可借助中心极限定理断定 $u$ 具有近似正态分布</p>
+<p>通常我们可以利用某种变换得到一个$u$接近于正态的分布</p>
+<p>误差项的正态性导致了OLS估计量的正态抽样分布</p>
+<p>$$<br>\frac{\hat{\beta}_j-\beta_j}{sd(\hat{\beta}_j)}\sim Normal(0,1)<br>$$</p>
+<h2 id="对单个总体参数的检验：t检验"><a href="#对单个总体参数的检验：t检验" class="headerlink" title="对单个总体参数的检验：t检验"></a>对单个总体参数的检验：t检验</h2><p>在CLM假定下，$\frac{\hat{\beta}_j-\beta_j}{se(\hat{\beta}_j)}\sim t_{n-k-1}$</p>
+<p>多数应用中，主要兴趣在于检验原假设$H_0:\beta_j&#x3D;0$</p>
+<p>为什么不反过来写？因为$x_j$对$y$有偏效应的表述对$\beta_j$不为零对任何一个值都成立</p>
+<p>$t_{\hat{\beta}_j}&#x3D;\hat{\beta}_j&#x2F;se(\hat{\beta}_j)$称之为t统计量</p>
+<p><strong>单侧&#x2F;双侧备择假设，t检验p值 ，置信区间</strong></p>
+<p>参考概统知识，此处不表</p>
+<h2 id="检验关于参数的一个线性组合假设"><a href="#检验关于参数的一个线性组合假设" class="headerlink" title="检验关于参数的一个线性组合假设"></a>检验关于参数的一个线性组合假设</h2><p>$H_0:\beta_1&#x3D;\beta_2$ 如何检验？</p>
+<p>$t&#x3D;\frac{\hat{\beta}_1-\hat{\beta}_2}{se(\hat{\beta}_1-\hat{\beta}_2)}$，关键是求解标准误，即要求解$Cov(\hat{\beta}_1,\hat{\beta}_2)$的一个估计值，这在数学上是复杂的</p>
+<p>但我们可以改写模型$\beta_1&#x3D;\theta_1+\beta_2$</p>
+<p>$y&#x3D;\beta_0+(\theta_1+\beta_2)x_1+\beta_2x_2+u&#x3D;\beta_0+\theta_1x_1+\beta_2(x_1+x_2)+u$</p>
+<p>直接检验$\theta_1$即可</p>
+<h2 id="对多个线性约束对检验：F检验"><a href="#对多个线性约束对检验：F检验" class="headerlink" title="对多个线性约束对检验：F检验"></a>对多个线性约束对检验：F检验</h2><p>原假设：$H_0:\beta_{k-q+1}&#x3D;0,\dots\beta_k&#x3D;0$</p>
+<p>不含$\beta_{\dots}$的模型是受约束模型，原始模型称之为不受约束模型</p>
+<p>受约束模型增加了$q$个排除性约束，定义$F$统计量</p>
+<p>$$<br>F&#x3D;\frac{(SSR_r-SSR_{ur})&#x2F;q}{SSR_{ur}&#x2F;(n-k-1)}&#x3D;\frac{(R_{ur}^2-R_r^2)&#x2F;q}{(1-R_{ur}^2)&#x2F;df_{ur}}\sim F_{q,n-k-1}<br>$$</p>
+<p>其中$SSR_r$是受约束模型的残差平方和，$SSR_{ur}$是不受约束的残差平方和，$q&#x3D;df_r-df_{ur}$</p>
+<p>如果拒绝原假设，那么就说$x_{k-q+1},\dots x_k$ 在适当的显著性水平上是联合统计显著的</p>
+<p><strong>对于一般的线性约束</strong></p>
+<p>如指定了$\beta_1&#x3D;1$，则将$x_1$挪到回归方程左边</p>
+<p>由于两次的因变量不同，不能采用$R^2$形式的统计量</p>
+<h1 id="多元回归分析：OLS的渐进性"><a href="#多元回归分析：OLS的渐进性" class="headerlink" title="多元回归分析：OLS的渐进性"></a>多元回归分析：OLS的渐进性</h1><h2 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h2><p>直观的理解：当样本量趋于无穷时，收敛到真值</p>
+<p><strong>Theory OLS</strong>的一致性</p>
+<p>在MLR1-4下，$\hat{\beta}_j$是$\hat{\beta}_j$的一致估计</p>
+<p><em>PROOF</em></p>
+<p>$$<br>X\beta+u&#x3D;y\\\hat{\beta}&#x3D;(X^TX)^{-1}X^Ty&#x3D;(X^TX)^{-1}X^T(X\beta+u)\\&#x3D;\beta+(X^TX)^{-1}X^Tu&#x3D;\beta+(\frac{1}{n}\sum_{i&#x3D;1}^n x_i^Tx_i)^{-1}(\frac{1}{n}\sum _{i&#x3D;1}^nx_i^Tu)<br>$$</p>
+<p>according to the large number law:</p>
+<p>$$<br>\frac{1}{n}\sum x_i^Tx_i\xrightarrow{p}\mathbb{E}x_i^Tx_i&#x3D;A,\quad \frac{1}{n}\sum x_i^T u\xrightarrow{p}\mathbb{E}x_iu&#x3D;0<br>$$</p>
+<p>because $A$ is a nonsingular matrix, so$(\frac{1}{n}\sum x_i^Tx_i)^{-1}\xrightarrow{p}A^{-1}$</p>
+<p>$$<br>plim \hat{\beta}&#x3D;\beta+A^{-1}\cdot0&#x3D;\beta<br>$$</p>
+<p><strong>假设MLR.4’ 零均值和零相关</strong></p>
+<p>对所有的$j$，都有$\mathbb{E}u&#x3D;0$和$Cov(x_j,u)&#x3D;0$</p>
+<p>这是一个比MLR.4更弱的假定，它只要求每个$x_j$与$u$无关。</p>
+<p>这导致$x_j$的非线性函数可能与误差相关</p>
+<p><strong>OLS的不一致性</strong></p>
+<p>如果误差与任何一个自变量相关，那么OLS就是有偏而不一致的估计。随着样本容量的增大，偏误将持续存在。</p>
+<p>$$<br>plim \hat{\beta_1}-\beta_1&#x3D;\frac{Cov(x_1,u)}{Var(x_1)}<br>$$</p>
+<p>不一致性用总体的性质表示，而偏误则基于样本的对应量表示</p>
+<h2 id="渐近正态和大样本推断"><a href="#渐近正态和大样本推断" class="headerlink" title="渐近正态和大样本推断"></a>渐近正态和大样本推断</h2><p><strong>Theory</strong> OLS的渐进正态性</p>
+<p>在MLR1-5下，</p>
+<p>1.<br>$\sqrt{n}(\hat{\beta}_j-\beta_j)\xrightarrow x N(0,\sigma^2&#x2F;a_j^2),a_j^2&#x3D;plim(n^{-1}\sum_{i&#x3D;1}^n \hat{r_{ij}}^2)$，其中$\hat{r}_{ij}$是$x_j$对其余自变量回归得到的残差，即不能被其他变量解释的部分，我们称$\hat{\beta}_j$是渐进正态分布的<br>2. $\hat{\sigma}^2$是$\sigma^2&#x3D;Var(u)$的一个一致估计<br>3. 对于每个$j$都有$(\hat{\beta}_j-\beta_j)&#x2F;sd(\hat{\beta}_j)\xrightarrow x N(0,1)$，且$(\hat{\beta}_j-\beta_j)&#x2F;se(\hat{\beta}_j)\xrightarrow x N(0,1)$</p>
+<p>去掉了MLR.6，只需要有限方差且零均值与同方差性质</p>
+<p>总体分布恒定，与样本数量大小没有关系</p>
+<p>$\hat{\beta}_j$的估计方差：$\hat{Var(\hat{\beta}_j)}&#x3D;\frac{\hat{\sigma}^2}{SST_j(1-R_j^2)}$，以$1&#x2F;n$的速度收缩至零</p>
+<h3 id="拉格朗日乘数LM统计量"><a href="#拉格朗日乘数LM统计量" class="headerlink" title="拉格朗日乘数LM统计量"></a>拉格朗日乘数LM统计量</h3><ol>
+<li>将$y$对施加限制后的自变量集回归，保存残差$\tilde{u}$</li>
+<li>将$\tilde{u}$对所有自变量进行回归，得到$R_u^2$</li>
+<li>计算$LM&#x3D;nR_u^2$</li>
+<li>将LM与$\chi_q^2$分布中适当的临界值$c$比较，如果$LM&gt;c$，则拒绝原假设，说明后$q$个变量的系数不为零</li>
+</ol>
+<h2 id="OLS的渐近有效性"><a href="#OLS的渐近有效性" class="headerlink" title="OLS的渐近有效性"></a>OLS的渐近有效性</h2><p>在模型$y&#x3D;\beta_0+\beta_1x_1+u$中，在MLR.4假设下，$\mathbb{E}[u\vert x]&#x3D;0$，我们关注斜率</p>
+<p>令$z_i&#x3D;g(x_i)$，$g$为任意函数，那么$u$就与$g(x)$无关。假定$Cov(z,x)\neq 0$，那么，估计量</p>
+<p>$$<br>\tilde{\beta}_1&#x3D;\sum(z_i-\bar{z})y_i&#x2F;\sum (z_i-\bar{z})x_i<br>$$</p>
+<p>是对$\beta_1$的一致估计。（证明：在分子分母分别除n并使用大数定律）</p>
+<p>$$<br>plim \tilde{\beta_1}&#x3D;\beta_1+Cov(z,u)&#x2F;Cov(z,x)&#x3D;\beta_1<br>$$</p>
+<p><strong>Theory</strong> OlS的渐近有效性</p>
+<p>高斯-马尔可夫假设下，OLS估计量具有最小的渐近方差，</p>
+<p>$$<br>Avar \sqrt{n}(\hat{\beta}_j-\beta_j)\le Avar\sqrt{n}(\tilde{\beta}_j-\beta_j)<br>$$</p>
+<h1 id="深入专题"><a href="#深入专题" class="headerlink" title="深入专题"></a>深入专题</h1><h2 id="数据测度单位对-OLS-统计量的影晌"><a href="#数据测度单位对-OLS-统计量的影晌" class="headerlink" title="数据测度单位对 OLS 统计量的影晌"></a>数据测度单位对 OLS 统计量的影晌</h2><p>度量单位对系数、标准误、置信区间、t统计量、F统计量的影响不会影响结果。</p>
+<p><strong>$\beta$系数</strong></p>
+<p>将所有变量都标准化后的回归结果得到的系数称为标准化系数或$\beta$系数 $\hat{b}_j&#x3D;(\delta_j&#x2F;\delta_y)\hat{\beta}_j$</p>
+<p>由此得到的$\beta$系数大小更具有说服力</p>
+<h2 id="函数形式的进一步讨论"><a href="#函数形式的进一步讨论" class="headerlink" title="函数形式的进一步讨论"></a>函数形式的进一步讨论</h2><h3 id="对数函数"><a href="#对数函数" class="headerlink" title="对数函数"></a>对数函数</h3><p>$\log(y)&#x3D;\hat{\beta}_0+\hat{\beta}_1\log x_1+\hat{\beta}_2x_2$</p>
+<p>固定$x_1$不变，有$\Delta \hat{\log y}&#x3D;\hat{\beta}_2 \Delta x_2$，即$%\Delta\hat{y}&#x3D;100\cdot[\exp(\hat{\beta}_2\Delta x_2)-1]$是精确的预测变化百分比，它是一致的，但却不是无偏的，因为指数函数的非线性</p>
+<p><strong>对数的好处：</strong></p>
+<ol>
+<li>斜率系数不随测度单位而变化，所以我们可以忽略以对数形式出现的变量的度量单位</li>
+<li>严格为正的变量，条件分布常常具有异方差性或偏态性，取对数后可以降低</li>
+<li>对数通常可以缩小变量的取值范围，对极端值也没有那么敏感</li>
+</ol>
+<p><strong>问题：</strong></p>
+<ol>
+<li>变量在0、1之间时，会导致变换后的数据绝对值很大</li>
+<li>更加难以预测原变量的值。两者的$R^2$也不具有可比性</li>
+</ol>
+<h3 id="含二次式的模型"><a href="#含二次式的模型" class="headerlink" title="含二次式的模型"></a>含二次式的模型</h3><p>一次项导致的变化表达式要重写，和变量本身也有关</p>
+<h3 id="含有交互项的模型"><a href="#含有交互项的模型" class="headerlink" title="含有交互项的模型"></a>含有交互项的模型</h3><p>$y&#x3D;\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_1x_2+u$$y&#x3D;\beta_0+\beta_1x_1+\beta_2x_2+\beta_2x_1x_2+u$</p>
+<p>此时$\beta_2$是$x_1&#x3D;0$时$x_2$对$y$的偏效应，没什么意义</p>
+<p>$y&#x3D;\beta_0+\beta_1x_1+\beta_2x_2+\beta_3(x_1-\mu_1)(x_2-\mu_2)+u$</p>
+<p>这样就是在均值处的偏效应了</p>
+<h2 id="拟合优度和回归元选择的进一步探讨"><a href="#拟合优度和回归元选择的进一步探讨" class="headerlink" title="拟合优度和回归元选择的进一步探讨"></a>拟合优度和回归元选择的进一步探讨</h2><p>较小的$R^2$意味着误差方差相对$y$的方差太大了，以及我们很难精确地估计$\beta_j$，但大样本容量可以抵消较大的误差方差。</p>
+<h3 id="调整-R-2"><a href="#调整-R-2" class="headerlink" title="调整$R^2$"></a>调整$R^2$</h3><p>$R^2&#x3D;1-\frac{SSR&#x2F;n}{SST&#x2F;n}$</p>
+<p>总体$R^2$定义为$1-\sigma_u^2&#x2F;\sigma_y^2$，这是$y$的变化在总体中可以用自变量解释的部分比例，是我们希望用$R^2$估计的值</p>
+<p>但是用$SSR&#x2F;n$估计$\sigma_u^2$是有偏的，用$\hat{\sigma}^2&#x3D;SSR&#x2F;(n-k-1)$显然更好，同理，用$SST&#x2F;(n-1)$代替$SST&#x2F;n$</p>
+<p>由此，得到调整$R^2$：</p>
+<p>$\bar{R^2}&#x3D;1-\hat{\sigma}^2&#x2F;[SST&#x2F;(n-1)]&#x3D;1-(1-R^2)\frac{n-1}{n-k-1}$</p>
+<p>虽然两个无偏估计的比不是无偏估计，但是$\bar{R^2}$在模型中额外增加自变量时施加了惩罚，在回归中增加一个变量时，只有新变量的t统计量大于1，$\bar{R^2}$才会提高，增加一组变量时，联合检验显著的F统计量大于1才会提高</p>
+<h3 id="利用调整-R-2-在两个非嵌套模型-nonnested-中进行选择"><a href="#利用调整-R-2-在两个非嵌套模型-nonnested-中进行选择" class="headerlink" title="利用调整$R^2$在两个非嵌套模型 (nonnested) 中进行选择"></a>利用调整$R^2$在两个非嵌套模型 (nonnested) 中进行选择</h3><p>Definition: 两个方程没有哪一个是另一个的特殊情形，所以它们是非嵌套模型</p>
+<p>在这种情况下，使用普通$R^2$对自变量较少的模型不公平</p>
+<p>当自变量组对应着不同的函数形式时，调整$R^2$也是有价值的</p>
+<p>遗憾的是，<strong>不能</strong>通过拟合优度决定不同的因变量形式，因为它们的总变化是不同的，拟合的是两个完全不同的因变量</p>
+<p><strong>回归分析中控制过多的因素</strong></p>
+<p>注重对回归做其他条件不变的解释即可</p>
+<p><strong>增加回归元以减少误差方差</strong></p>
+<p>增加适当的无关变量可以减小误差方差，在大样本容量的情况下，所有OLS估计量对标准误都会减小</p>
+<h2 id="预测和残差分析"><a href="#预测和残差分析" class="headerlink" title="预测和残差分析"></a>预测和残差分析</h2><h3 id="预测的置信区间"><a href="#预测的置信区间" class="headerlink" title="预测的置信区间"></a>预测的置信区间</h3><p>估计方程：$\hat{y}&#x3D;\hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2+\dots$</p>
+<p>$\theta_0&#x3D;\beta_0+\beta_1c_1+\beta_2c_2+\dots$ 的估计量是：</p>
+<p>$\hat{\theta}_0&#x3D;\hat{\beta}_0+\hat{\beta}_1c_1+\hat{\beta}_2c_2+\dots$ 我们关注它的置信区间</p>
+<p>在$df$较大的情况下，我们可以利用经验法则$\hat{\theta}_0\pm2\cdot se(\hat{\theta}_0)$构造95%置信区间</p>
+<p>求$se(\hat{\theta}_0)$:</p>
+<p>$\theta_0$表达式代入方程：$y&#x3D;\theta_0+\beta_1(x_1-c_1)+\beta_2(x_2-c_2)+\dots$</p>
+<p>用样本回归一下就可以了，截距项是预测值，还可以得到标准误</p>
+<p>由于每个解释变量的样本均值都为零时，截距估计量的方差最小，所以当$x_j$都取均值时，预测值的方差最小。随着$c_j$的值离中心越来越远，误差越来越大</p>
+<p>令$y^0$表示我们构造一个置信区间（预测区间）的估计值</p>
+<p>$$<br>\hat{y}^0&#x3D;\hat{\beta}_0+\hat{\beta}_1x_1^0+\cdots+\\\hat{e}^0&#x3D;y^0-\hat{y}^0&#x3D;\beta_0+\beta_1x_1^0+\cdots+u^0-\hat{y}^0\\\mathbb{E}\hat{e}^0&#x3D;0<br>$$</p>
+<p>所以预测误差的期望值为零</p>
+<p>$u^0$与用来得到$\hat{\beta}_j$的样本方差不相关，$u^0$与每个$\hat{\beta}_j$都不相关，所以$u^0$与$\hat{y}^0$不相关</p>
+<p>$$<br>Var(\hat{e}^0)&#x3D;Var(\hat{y}^0)+Var(u^0)&#x3D;Var(\hat{y}^0)+\sigma^2<br>$$</p>
+<p>第一项来自抽样误差，即对$\beta_j$的估计误差</p>
+<p>$se(\hat{e}^0)&#x3D;\sqrt{se(\hat{y}^0)^2+\hat{\sigma}^2}$</p>
+<h3 id="残差分析"><a href="#残差分析" class="headerlink" title="残差分析"></a>残差分析</h3><p>计算剔除某些因素后样本的水平</p>
+<h3 id="因变量为-log-y-时对-y-的预测"><a href="#因变量为-log-y-时对-y-的预测" class="headerlink" title="因变量为$\log y$时对$y$的预测"></a>因变量为$\log y$时对$y$的预测</h3><p>$\hat{y}&#x3D;\exp(\hat{\log y})?$ 会系统地<strong>低估</strong>$y$的预测值</p>
+<p>$\mathbb{E}[y\vert x]&#x3D;\exp(\sigma^2&#x2F;2)\cdot \exp(\beta_0+\beta_1x_1+\beta_2x_2+\dots)$</p>
+<p>$\hat{y}&#x3D;\exp(\hat{\sigma}^2&#x2F;2)\exp(\hat{\log y})$，虽然不是无偏的，但是是一致的。它依赖于$u$的正态性</p>
+<p>一般的情况，$\mathbb{E}[y\vert x]&#x3D;\alpha_0\cdot \exp(\beta_0+\beta_1x_1+\beta_2x_2+\dots)$，$\alpha_0$是$\exp(u)$的期望值，且是大于一的，所以我们要求$\hat{\alpha}_0$</p>
+<p>矩估计$\hat{\alpha}_0&#x3D;\frac{1}{n}\sum\exp(\hat{u}_i)$，是一个一致有偏的估计量，这是所谓的污染估计值的一种特殊形式。或者我们可以通过一个过原点的简单回归：$m_i&#x3D;\exp(\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\dots),\mathbb{E}[y_i\vert m_i]&#x3D;\alpha_0m_i$，这样，我们就能从$y_i$对$\hat{m}_i$的回归中得到一个$\alpha_0$的无偏估计：</p>
+<p>$$<br>\tilde{\alpha}_0&#x3D;\frac{\sum\hat{m}_iy_i}{\sum\hat{m}_i^2}<br>$$</p>
+<p><strong>拟合优度</strong></p>
+<p>在普通最小二乘中，$R^2$就是$\hat{y}_i$与$y_i$之间的相关系数的平方，如果我们对所有观测量都计算$\hat{y}_i&#x3D;\hat{\alpha}_0m_i$，由于是在变量上乘了一个常数$\hat{\alpha}_0$，所以对$\alpha_0$的估计不会影响到结果。我们还是计算$y<br>_i$和$\hat{y}<br>_i$的相关系数，这样就可以在不同的因变量模型之间对比拟合优度</p>
+<h1 id="含有定性信息的多元回归分析：-二值（或虚拟）变量"><a href="#含有定性信息的多元回归分析：-二值（或虚拟）变量" class="headerlink" title="含有定性信息的多元回归分析： 二值（或虚拟）变量"></a>含有定性信息的多元回归分析： 二值（或虚拟）变量</h1><p>本部分在劳动经济学中较多涉及，不再赘述</p>
+
     </div>
 
     
@@ -298,6 +523,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">简单回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.1.</span> <span class="nav-text">普通最小二乘法的推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E9%87%8F%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">统计量的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OLS%E4%BC%B0%E8%AE%A1%E9%87%8F%E7%9A%84%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE"><span class="nav-number">1.3.</span> <span class="nav-text">OLS估计量的期望和方差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OLS%E7%9A%84%E6%97%A0%E5%81%8F%E6%80%A7"><span class="nav-number">1.3.1.</span> <span class="nav-text">OLS的无偏性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%EF%BC%9A%E4%BC%B0%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">多元回归分析：估计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%BE%97%E5%88%B0OLS%E4%BC%B0%E8%AE%A1%E5%80%BC"><span class="nav-number">2.1.</span> <span class="nav-text">如何得到OLS估计值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%9F%E5%90%88%E5%80%BC%E5%92%8C%E6%AE%8B%E5%B7%AE%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E8%B4%A8"><span class="nav-number">2.2.</span> <span class="nav-text">拟合值和残差的重要性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%9B%9E%E5%BD%92%E4%B8%8E%E5%A4%9A%E5%85%83%E5%9B%9E%E5%BD%92"><span class="nav-number">2.2.1.</span> <span class="nav-text">简单回归与多元回归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OLS%E4%BC%B0%E8%AE%A1%E9%87%8F%E7%9A%84%E6%9C%9F%E6%9C%9B"><span class="nav-number">2.3.</span> <span class="nav-text">OLS估计量的期望</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OLS%E4%BC%B0%E8%AE%A1%E7%9A%84%E6%A0%87%E5%87%86%E8%AF%AF"><span class="nav-number">2.3.1.</span> <span class="nav-text">OLS估计的标准误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OLS%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7"><span class="nav-number">2.4.</span> <span class="nav-text">OLS的有效性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%EF%BC%9A%E6%8E%A8%E6%96%AD"><span class="nav-number">3.</span> <span class="nav-text">多元回归分析：推断</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OLS%E4%BC%B0%E8%AE%A1%E9%87%8F%E7%9A%84%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83"><span class="nav-number">3.1.</span> <span class="nav-text">OLS估计量的抽样分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E5%8D%95%E4%B8%AA%E6%80%BB%E4%BD%93%E5%8F%82%E6%95%B0%E7%9A%84%E6%A3%80%E9%AA%8C%EF%BC%9At%E6%A3%80%E9%AA%8C"><span class="nav-number">3.2.</span> <span class="nav-text">对单个总体参数的检验：t检验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E5%85%B3%E4%BA%8E%E5%8F%82%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E5%81%87%E8%AE%BE"><span class="nav-number">3.3.</span> <span class="nav-text">检验关于参数的一个线性组合假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E5%A4%9A%E4%B8%AA%E7%BA%BF%E6%80%A7%E7%BA%A6%E6%9D%9F%E5%AF%B9%E6%A3%80%E9%AA%8C%EF%BC%9AF%E6%A3%80%E9%AA%8C"><span class="nav-number">3.4.</span> <span class="nav-text">对多个线性约束对检验：F检验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%EF%BC%9AOLS%E7%9A%84%E6%B8%90%E8%BF%9B%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">多元回归分析：OLS的渐进性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-number">4.1.</span> <span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%90%E8%BF%91%E6%AD%A3%E6%80%81%E5%92%8C%E5%A4%A7%E6%A0%B7%E6%9C%AC%E6%8E%A8%E6%96%AD"><span class="nav-number">4.2.</span> <span class="nav-text">渐近正态和大样本推断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0LM%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="nav-number">4.2.1.</span> <span class="nav-text">拉格朗日乘数LM统计量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OLS%E7%9A%84%E6%B8%90%E8%BF%91%E6%9C%89%E6%95%88%E6%80%A7"><span class="nav-number">4.3.</span> <span class="nav-text">OLS的渐近有效性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E4%B8%93%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">深入专题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%8B%E5%BA%A6%E5%8D%95%E4%BD%8D%E5%AF%B9-OLS-%E7%BB%9F%E8%AE%A1%E9%87%8F%E7%9A%84%E5%BD%B1%E6%99%8C"><span class="nav-number">5.1.</span> <span class="nav-text">数据测度单位对 OLS 统计量的影晌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E8%AE%A8%E8%AE%BA"><span class="nav-number">5.2.</span> <span class="nav-text">函数形式的进一步讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E5%87%BD%E6%95%B0"><span class="nav-number">5.2.1.</span> <span class="nav-text">对数函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%BA%8C%E6%AC%A1%E5%BC%8F%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.2.2.</span> <span class="nav-text">含二次式的模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E6%9C%89%E4%BA%A4%E4%BA%92%E9%A1%B9%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.2.3.</span> <span class="nav-text">含有交互项的模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%9F%E5%90%88%E4%BC%98%E5%BA%A6%E5%92%8C%E5%9B%9E%E5%BD%92%E5%85%83%E9%80%89%E6%8B%A9%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E6%8E%A2%E8%AE%A8"><span class="nav-number">5.3.</span> <span class="nav-text">拟合优度和回归元选择的进一步探讨</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E6%95%B4-R-2"><span class="nav-number">5.3.1.</span> <span class="nav-text">调整$R^2$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E8%B0%83%E6%95%B4-R-2-%E5%9C%A8%E4%B8%A4%E4%B8%AA%E9%9D%9E%E5%B5%8C%E5%A5%97%E6%A8%A1%E5%9E%8B-nonnested-%E4%B8%AD%E8%BF%9B%E8%A1%8C%E9%80%89%E6%8B%A9"><span class="nav-number">5.3.2.</span> <span class="nav-text">利用调整$R^2$在两个非嵌套模型 (nonnested) 中进行选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%92%8C%E6%AE%8B%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-number">5.4.</span> <span class="nav-text">预测和残差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E7%9A%84%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4"><span class="nav-number">5.4.1.</span> <span class="nav-text">预测的置信区间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AE%8B%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-number">5.4.2.</span> <span class="nav-text">残差分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A0%E5%8F%98%E9%87%8F%E4%B8%BA-log-y-%E6%97%B6%E5%AF%B9-y-%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="nav-number">5.4.3.</span> <span class="nav-text">因变量为$\log y$时对$y$的预测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AB%E6%9C%89%E5%AE%9A%E6%80%A7%E4%BF%A1%E6%81%AF%E7%9A%84%E5%A4%9A%E5%85%83%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%EF%BC%9A-%E4%BA%8C%E5%80%BC%EF%BC%88%E6%88%96%E8%99%9A%E6%8B%9F%EF%BC%89%E5%8F%98%E9%87%8F"><span class="nav-number">6.</span> <span class="nav-text">含有定性信息的多元回归分析： 二值（或虚拟）变量</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
