@@ -103,7 +103,7 @@ $\sigma^2=\mathbb{E}[u^2\vert x]$，即$\sigma^2$是$u$的无条件方差，也�
 
 $Var(\hat{\beta}_1)=\frac{\sigma^2}{SST_x}$
 
-$Var(\hat{\beta}_0)=\frac{\sigma^2\bar{x}}{SST_x}$
+$Var(\hat{\beta}_0)=\frac{\sigma^2\bar{x}}{SST_x}+\frac{\sigma^2}{n}$
 
 从$\hat{\beta}_1=\beta_1+\frac{\sum d_iu_i}{SST_x}$出发，$Var(\hat{\beta}_1)=\frac{\sum d_i^2\sigma^2}{SST_x^2}=\sigma^2/SST_x$
 
