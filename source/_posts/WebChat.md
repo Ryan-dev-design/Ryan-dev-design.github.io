@@ -7,6 +7,7 @@ tags: [计算机]
 ---
 # WebChat聊天室
 
+github:https://github.com/Ryan-dev-design/WebChat
 ## 依赖环境
 
 1. python 2.7.18(请确保使用正确的python版本,因为tornado-redis与高版本python可能出现兼容性问题)
